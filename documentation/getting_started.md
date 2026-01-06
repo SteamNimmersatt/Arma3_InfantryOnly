@@ -24,7 +24,21 @@ The mod logs information to the Arma 3 RPT file. You can find this file at:
 
 ## Configuration
 
-### Log Level Adjustment
+### CBA Settings
+The mod now includes configurable settings through the CBA settings interface:
+1. Launch Arma 3 with both CBA and Infantry Only mods enabled
+2. Access the settings through the CBA settings menu (usually found in the ESC menu)
+3. Look for "Infantry Only" in the settings categories
+
+Available settings:
+- **Enable/Disable Mod**: Toggle the mod functionality on/off
+- **Vehicle Whitelist**: Specify vehicle types that should NOT have their weapons disabled
+- **Logging Verbosity**: Control the amount of information logged
+
+### Manual Configuration (Legacy)
+If you're not using CBA or prefer manual configuration:
+
+#### Log Level Adjustment
 To change the logging verbosity:
 1. Open `addons/main/functions/main/fn_log.sqf`
 2. Modify the `_logLevelSetting` variable:
@@ -32,7 +46,7 @@ To change the logging verbosity:
    private _logLevelSetting = 1; // 0=DEBUG, 1=INFO, 2=WARNING, 3=ERROR
    ```
 
-### Scan Interval Adjustment
+#### Scan Interval Adjustment
 To change how often the mod checks for new vehicles:
 1. Open `addons/main/functions/main/fn_initMod.sqf`
 2. Modify the sleep interval in the spawn block:
@@ -69,16 +83,18 @@ To change how often the mod checks for new vehicles:
 1. Check the RPT file for error messages
 2. Verify that the mod is properly loaded
 3. Ensure the scan interval is appropriate for your mission (some missions spawn vehicles very quickly)
+4. Check if the mod is enabled in CBA settings
 
 ### Performance Issues
 1. Increase the scan interval in `fn_initMod.sqf`
 2. Check the RPT file for any infinite loops or errors
-3. Consider implementing CBA event handlers for more efficient processing
+3. The mod now uses CBA event handlers which should improve performance
 
 ### Mod Not Loading
 1. Verify that the mod folder structure is correct
 2. Check that all required files are present
 3. Ensure that the mod is enabled in the launcher or startup parameters
+4. Verify that CBA is also enabled (the mod now requires CBA)
 
 ## Development
 
@@ -91,6 +107,8 @@ addons/
         fn_initMod.sqf          # Main initialization
         fn_initModAddon.sqf     # Addon-specific initialization
         fn_initModClient.sqf    # Client-specific initialization
+        fn_initCBASettings.sqf  # CBA settings initialization
+        fn_handleVehicleSpawned.sqf  # CBA event handler
         fn_disableVehicleWeapons.sqf  # Core functionality
         fn_log.sqf              # Logging system
         fn_msgSideChat.sqf      # Side chat messaging

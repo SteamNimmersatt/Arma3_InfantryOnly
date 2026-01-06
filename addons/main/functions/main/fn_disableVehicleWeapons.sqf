@@ -11,9 +11,10 @@
 	Nothing
 */
 
-// TODO: When integrating with CBA, consider using CBA event handlers for more efficient vehicle detection:
-// - CBA_fnc_addEventHandler for "vehicleSpawned" event
-// - This would eliminate the need for periodic polling
+// Check if mod is enabled
+if (!isNil "INFONLY_enable" && {!INFONLY_enable}) exitWith {
+	[INFONLY_LOGLEVEL_DEBUG, "Mod is disabled. Skipping vehicle weapon disabling."] call INFONLY_fnc_log;
+};
 
 [INFONLY_LOGLEVEL_DEBUG, "Checking for vehicles to disable weapons on..."] call INFONLY_fnc_log;
 
@@ -34,6 +35,15 @@ private _processedCount = 0;
 	// Skip infantry units (we only want to disable weapons on actual vehicles)
 	if (_vehicle isKindOf "Man") then {
 		continue;
+	};
+	
+	// Check whitelist - skip vehicles that are in the whitelist
+	if (!isNil "INFONLY_vehicleWhitelistParsed" && {count INFONLY_vehicleWhitelistParsed > 0}) then {
+		private _vehicleType = toUpper(typeOf _vehicle);
+		if (_vehicleType in INFONLY_vehicleWhitelistParsed) then {
+			[INFONLY_LOGLEVEL_DEBUG, format ["Skipping whitelisted vehicle: %1", _vehicleType]] call INFONLY_fnc_log;
+			continue;
+		};
 	};
 	
 	// Skip if vehicle has no weapons

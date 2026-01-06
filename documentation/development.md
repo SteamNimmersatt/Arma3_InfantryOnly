@@ -12,6 +12,8 @@ addons/
         fn_initMod.sqf          # Main initialization
         fn_initModAddon.sqf     # Addon-specific initialization
         fn_initModClient.sqf    # Client-specific initialization
+        fn_initCBASettings.sqf  # CBA settings initialization
+        fn_handleVehicleSpawned.sqf  # CBA event handler
         fn_disableVehicleWeapons.sqf  # Core functionality
         fn_log.sqf              # Logging system
         fn_msgSideChat.sqf      # Side chat messaging
@@ -74,31 +76,36 @@ documentation/
 2. **Mission Testing**: Create a simple mission to test the mod functionality
 3. **Multiplayer Testing**: Test in multiplayer environment if applicable
 4. **Performance Testing**: Monitor performance impact of your changes
+5. **CBA Settings Testing**: Test all CBA settings and their effects
 
-## CBA Integration Roadmap
+## CBA Integration
 
-### Phase 1: Basic Integration
-1. Add CBA as a required addon in `config.cpp`
-2. Implement CBA settings system for configuration
-3. Use CBA logging functions instead of custom logging
+The mod now fully integrates with CBA (Community Base Addons) for enhanced functionality:
 
-### Phase 2: Event-Driven Processing
-1. Replace periodic polling with CBA event handlers
-2. Implement "vehicleSpawned" event handler
-3. Add "vehicleDeleted" event handler for cleanup
+### CBA Settings
+- Settings are defined in `fn_initCBASettings.sqf` using `CBA_fnc_addSetting`
+- Settings include mod enable/disable, vehicle whitelist, and logging verbosity
+- Callback functions are used to process settings when they change
 
-### Phase 3: Advanced Features
-1. Implement CBA keybinding system
-2. Add CBA XEH (Extended Event Handlers) support
-3. Create CBA-compatible API for other mods
+### CBA Event Handlers
+- The mod registers a "vehicleSpawned" event handler for immediate vehicle processing
+- Both server and client register the event handler for proper multiplayer support
+- Event-driven processing replaces most of the need for periodic polling
+
+### Best Practices for CBA Integration
+1. **Settings**: Use `CBA_fnc_addSetting` for all user-configurable options
+2. **Event Handlers**: Use CBA event handlers instead of polling when possible
+3. **Logging**: Use the CBA logging verbosity setting
+4. **Compatibility**: Always check if CBA is loaded before using CBA functions
 
 ## Performance Considerations
 
 ### Optimization Techniques
-1. **Caching**: Cache results when possible to avoid redundant calculations
-2. **Selective Processing**: Skip objects that don't need processing
-3. **Batch Operations**: Process multiple objects together when possible
-4. **Efficient Loops**: Use appropriate loop constructs for the data size
+1. **Event-Driven Processing**: Use CBA event handlers instead of periodic polling
+2. **Caching**: Cache results when possible to avoid redundant calculations
+3. **Selective Processing**: Skip objects that don't need processing
+4. **Batch Operations**: Process multiple objects together when possible
+5. **Efficient Loops**: Use appropriate loop constructs for the data size
 
 ### Monitoring Performance
 1. **Profiling**: Use Arma 3 profiling tools to identify bottlenecks
@@ -115,10 +122,17 @@ documentation/
 5. Add logging for debugging and monitoring
 6. Update documentation
 
+### Adding New CBA Settings
+1. Add the setting definition to `fn_initCBASettings.sqf`
+2. Use the setting in your functions by accessing the global variable
+3. Add callback functions if needed to process the setting when it changes
+4. Update documentation
+
 ### Mod Compatibility
 1. **Namespace Isolation**: Use unique prefixes to avoid conflicts
 2. **Event Handling**: Use CBA event handlers when possible for better compatibility
 3. **Graceful Degradation**: Handle cases where required mods are not present
+4. **CBA Dependency**: The mod now requires CBA, so document this dependency
 
 ## Release Process
 

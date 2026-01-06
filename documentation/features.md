@@ -5,9 +5,15 @@
 ### Vehicle Weapon Disabling
 - **Comprehensive Coverage**: Disables weapons on all types of vehicles including cars, trucks, armored vehicles, helicopters, and aircraft
 - **All Weapon Systems**: Removes ammunition from all turrets, weapons, and missile systems on vehicles
-- **Periodic Updates**: Checks for newly spawned vehicles every 30 seconds to ensure all vehicles are covered
+- **Event-Driven Processing**: Uses CBA event handlers to respond immediately when vehicles are spawned
+- **Periodic Updates**: Checks for newly spawned vehicles every 30 seconds as a backup to event handlers
 - **Efficient Processing**: Marks vehicles as processed to avoid redundant operations
 - **Selective Application**: Only affects actual vehicles, not infantry units
+
+### CBA Integration
+- **Event Handlers**: Uses CBA's "vehicleSpawned" event for immediate vehicle processing
+- **Settings System**: Fully configurable through CBA settings interface
+- **Extended Compatibility**: Integrates with other CBA-based mods
 
 ### Initialization System
 - **Server-Client Architecture**: Properly initializes on both server and client machines
@@ -17,7 +23,7 @@
 ### Logging System
 - **Multi-level Logging**: Supports DEBUG, INFO, WARNING, and ERROR log levels
 - **RPT File Output**: Logs information to the Arma 3 RPT file for debugging
-- **Configurable Verbosity**: Log level can be adjusted for more or less detail
+- **Configurable Verbosity**: Log level can be adjusted through CBA settings
 
 ### Code Quality
 - **Modular Design**: Functions are separated into individual files for maintainability
@@ -25,19 +31,22 @@
 - **Standard Naming Convention**: Uses INFONLY_fnc_ prefix for all functions
 - **Error Handling**: Includes checks for null objects and other edge cases
 
-## Planned Features
+## Configurable Settings
 
-### CBA Integration
-- **Event-driven Processing**: Use CBA event handlers for more efficient vehicle detection
-- **Settings System**: Configurable options through CBA settings
-- **Extended Compatibility**: Better integration with other CBA-based mods
+### General Settings
+- **Enable/Disable Mod**: Toggle the mod functionality on/off through CBA settings
+
+### Vehicle Settings
+- **Vehicle Whitelist**: Specify vehicle types that should NOT have their weapons disabled
+
+### Logging Settings
+- **Logging Verbosity**: Control the amount of information logged (Disabled, Errors Only, Warnings, Info, Debug)
+
+## Planned Features
 
 ### Performance Enhancements
 - **Optimized Scanning**: More intelligent vehicle scanning algorithms
 - **Reduced Frequency**: Less frequent checks with more targeted updates
-- **Whitelist/Blacklist**: Option to exclude certain vehicle types from processing
 
 ### Advanced Options
-- **Transport-Only Vehicles**: Allow some vehicles to retain weapons while others don't
 - **Mission Maker Controls**: Tools for mission creators to customize behavior
-- **Dynamic Enable/Disable**: Ability to toggle the mod on and off during missions

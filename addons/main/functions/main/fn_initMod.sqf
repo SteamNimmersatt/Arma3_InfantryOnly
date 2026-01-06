@@ -12,6 +12,14 @@ INFONLY_INIT = true;
 
 [INFONLY_LOGLEVEL_INFO, "Initializing Infantry Only mod."] call INFONLY_fnc_log;
 
+// Initialize CBA settings
+call INFONLY_fnc_initCBASettings;
+
+// Register CBA event handler for vehicle spawning
+["vehicleSpawned", INFONLY_fnc_handleVehicleSpawned] call CBA_fnc_addEventHandler;
+
+[INFONLY_LOGLEVEL_INFO, "Registered CBA event handler for vehicle spawning."] call INFONLY_fnc_log;
+
 // Execute vehicle weapon disabling initialization
 // In singleplayer: !isMultiplayer is true
 // In multiplayer: isServer is true for dedicated server
@@ -21,7 +29,7 @@ if(isServer || !isMultiplayer) then {
 	// Call the function immediately to disable weapons on existing vehicles
 	call INFONLY_fnc_disableVehicleWeapons;
 	
-	// Schedule periodic checks for new vehicles
+	// Schedule periodic checks for new vehicles (as backup to event handlers)
 	[] spawn {
 		while {true} do {
 			sleep 30; // Check every 30 seconds for new vehicles
