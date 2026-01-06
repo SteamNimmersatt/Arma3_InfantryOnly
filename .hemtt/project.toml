@@ -1,0 +1,23 @@
+name = "Infantry Only"
+prefix = "infonly"
+mainprefix = "z"
+author = "Nimmersatt"
+
+[version]
+major = 2
+minor = 5
+patch = 0
+build = 0
+
+[files]
+include = [
+    "LICENSE",
+    "logo.paa",
+    "mod.cpp"
+]
+exclude = [
+    "*.psd",
+    "*.md",
+    "*.sh",
+    ".*" # dot files
+]

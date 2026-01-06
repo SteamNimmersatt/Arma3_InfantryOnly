@@ -1,0 +1,10 @@
+.env
+.hemttout
+*.pbo
+hemtt
+hemtt.exe
+/releases
+.aider.chat.history.md
+.aider*
+build_launch.sh
+.idea
