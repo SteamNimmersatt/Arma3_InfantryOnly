@@ -12,6 +12,7 @@ class InfantryOnly
 		class initModClient {description = ""; recompile = 1};
 		class log {description = ""; recompile = 1};
 		class msgSideChat {description = ""; recompile = 1};
+		class disableVehicleWeapons {description = "Disables all weapons on vehicles by setting their ammunition to zero"; recompile = 1};
 	};
 	
 };
