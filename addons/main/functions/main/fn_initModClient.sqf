@@ -12,6 +12,16 @@ waitUntil {!isNil "INFONLY_INIT_STARTUP_SCRIPTS_EXECUTED" && !isNull player};
 // Client-side initialization
 [INFONLY_LOGLEVEL_INFO, "Infantry Only client initialized."] call INFONLY_fnc_log;
 
-// Note: Vehicle weapon disabling is handled server-side, but we can call the function
-// on the client for debugging purposes or to check local vehicle states
-// call INFONLY_fnc_disableVehicleWeapons;
+// Handle vehicles that are local to this client (important for multiplayer)
+// When a player gets in as gunner, turrets become local to their machine
+// Skip this in singleplayer as the host handles it in the main initialization
+if(isMultiplayer) then {
+	[] spawn {
+		while {true} do {
+			sleep 30; // Check every 30 seconds for locally controlled vehicles
+			call INFONLY_fnc_disableVehicleWeapons;
+		};
+	};
+} else {
+	[INFONLY_LOGLEVEL_INFO, "Singleplayer detected. Vehicle weapon disabling handled by host initialization."] call INFONLY_fnc_log;
+};

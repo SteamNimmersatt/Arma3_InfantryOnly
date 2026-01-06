@@ -49,27 +49,16 @@ private _processedCount = 0;
 		continue;
 	};
 	
+	// Skip if vehicle is not local (ammo can only be set on local vehicles)
+	if (!local _vehicle) then {
+		continue;
+	};
+	
 	[INFONLY_LOGLEVEL_DEBUG, format ["Disabling weapons on vehicle: %1", typeOf _vehicle]] call INFONLY_fnc_log;
 	
-	// Set ammunition for all turrets to zero
-	{
-		private _turretPath = _x;
-		private _magazines = _vehicle magazinesTurret _turretPath;
-		
-		{
-			_vehicle removeMagazinesTurret [_x, _turretPath];
-		} forEach _magazines;
-	} forEach (allTurrets [_vehicle, true]);
-	
-	// Set ammunition for vehicle weapons to zero
-	{
-		private _weapon = _x;
-		private _magazines = _vehicle magazines [_weapon];
-		
-		{
-			_vehicle removeMagazine _x;
-		} forEach _magazines;
-	} forEach _weapons;
+	// Set vehicle ammunition to zero using the built-in Arma 3 command
+	// This affects all turrets and weapons on the vehicle
+	_vehicle setVehicleAmmo 0;
 	
 	// Mark vehicle as processed
 	_vehicle setVariable ["INFONLY_weaponsDisabled", true];

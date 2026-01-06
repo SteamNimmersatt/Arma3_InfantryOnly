@@ -12,9 +12,11 @@ INFONLY_INIT = true;
 
 [INFONLY_LOGLEVEL_INFO, "Initializing Infantry Only mod."] call INFONLY_fnc_log;
 
-// Execute server-side initialization
-if(isServer) then {
-	[INFONLY_LOGLEVEL_INFO, "Starting server-side vehicle weapon disabling system."] call INFONLY_fnc_log;
+// Execute vehicle weapon disabling initialization
+// In singleplayer: !isMultiplayer is true
+// In multiplayer: isServer is true for dedicated server
+if(isServer || !isMultiplayer) then {
+	[INFONLY_LOGLEVEL_INFO, "Starting vehicle weapon disabling system."] call INFONLY_fnc_log;
 	
 	// Call the function immediately to disable weapons on existing vehicles
 	call INFONLY_fnc_disableVehicleWeapons;
@@ -22,10 +24,12 @@ if(isServer) then {
 	// Schedule periodic checks for new vehicles
 	[] spawn {
 		while {true} do {
-			sleep 10; // Check every 30 seconds for new vehicles
+			sleep 30; // Check every 30 seconds for new vehicles
 			call INFONLY_fnc_disableVehicleWeapons;
 		};
 	};
+} else {
+	[INFONLY_LOGLEVEL_INFO, "Client connected to multiplayer server. Vehicle weapon disabling handled by server."] call INFONLY_fnc_log;
 };
 
 // Execute client-side initialization
