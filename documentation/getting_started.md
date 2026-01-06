@@ -33,26 +33,9 @@ The mod now includes configurable settings through the CBA settings interface:
 Available settings:
 - **Enable/Disable Mod**: Toggle the mod functionality on/off
 - **Vehicle Whitelist**: Specify vehicle types that should NOT have their weapons disabled
+- **Allow Static Turret Ammunition**: Control whether static turrets (machine guns, grenade launchers, etc.) keep their ammunition (enabled by default)
 - **Logging Verbosity**: Control the amount of information logged
 
-### Manual Configuration (Legacy)
-If you're not using CBA or prefer manual configuration:
-
-#### Log Level Adjustment
-To change the logging verbosity:
-1. Open `addons/main/functions/main/fn_log.sqf`
-2. Modify the `_logLevelSetting` variable:
-   ```sqf
-   private _logLevelSetting = 1; // 0=DEBUG, 1=INFO, 2=WARNING, 3=ERROR
-   ```
-
-#### Scan Interval Adjustment
-To change how often the mod checks for new vehicles:
-1. Open `addons/main/functions/main/fn_initMod.sqf`
-2. Modify the sleep interval in the spawn block:
-   ```sqf
-   sleep 30; // Change this value to adjust frequency (in seconds)
-   ```
 
 ## Extending the Mod
 

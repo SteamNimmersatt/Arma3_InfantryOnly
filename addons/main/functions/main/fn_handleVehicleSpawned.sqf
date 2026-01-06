@@ -52,6 +52,13 @@ if (!local _vehicle) exitWith {
 	[INFONLY_LOGLEVEL_DEBUG, format ["Vehicle %1 is not local. Skipping.", typeOf _vehicle]] call INFONLY_fnc_log;
 };
 
+// Check if this is a static weapon and if we should allow it to keep ammunition
+if (_vehicle isKindOf "StaticWeapon" && {!isNil "INFONLY_allowStaticTurretsAmmunition"} && {INFONLY_allowStaticTurretsAmmunition}) exitWith {
+	[INFONLY_LOGLEVEL_DEBUG, format ["Static weapon %1 is allowed to keep ammunition. Skipping.", typeOf _vehicle]] call INFONLY_fnc_log;
+	// Mark as processed to avoid rechecking
+	_vehicle setVariable ["INFONLY_weaponsDisabled", true];
+};
+
 [INFONLY_LOGLEVEL_DEBUG, format ["Disabling weapons on newly spawned vehicle: %1", typeOf _vehicle]] call INFONLY_fnc_log;
 
 // Set vehicle ammunition to zero using the built-in Arma 3 command

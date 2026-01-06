@@ -41,6 +41,7 @@
 
 ### Vehicle Settings
 - **Vehicle Whitelist**: Specify vehicle types that should NOT have their weapons disabled
+- **Allow Static Turret Ammunition**: Control whether static turrets (machine guns, grenade launchers, etc.) keep their ammunition (enabled by default)
 
 ### Logging Settings
 - **Logging Verbosity**: Control the amount of information logged (Disabled, Errors Only, Warnings, Info, Debug)

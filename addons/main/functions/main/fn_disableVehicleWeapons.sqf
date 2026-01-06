@@ -64,6 +64,14 @@ private _processedCount = 0;
 		continue;
 	};
 	
+	// Check if this is a static weapon and if we should allow it to keep ammunition
+	if (_vehicle isKindOf "StaticWeapon" && {!isNil "INFONLY_allowStaticTurretsAmmunition"} && {INFONLY_allowStaticTurretsAmmunition}) then {
+		[INFONLY_LOGLEVEL_DEBUG, format ["Static weapon %1 is allowed to keep ammunition. Skipping.", typeOf _vehicle]] call INFONLY_fnc_log;
+		// Mark as processed to avoid rechecking
+		_vehicle setVariable ["INFONLY_weaponsDisabled", true];
+		continue;
+	};
+	
 	// Check if we've already processed this vehicle to avoid unnecessary work
 	if (!isNil {_vehicle getVariable "INFONLY_weaponsDisabled"}) then {
 		continue;
