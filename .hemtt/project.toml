@@ -4,8 +4,8 @@ mainprefix = "z"
 author = "Nimmersatt"
 
 [version]
-major = 2
-minor = 5
+major = 0
+minor = 1
 patch = 0
 build = 0
 
