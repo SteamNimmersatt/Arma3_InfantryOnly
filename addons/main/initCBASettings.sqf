@@ -1,15 +1,8 @@
-#include "functions.h"
-
 /*
 	Initializes CBA settings for the Infantry Only mod.
-	This function should be called during mod initialization.
-	
-	Parameter(s):
-	None
-	
-	Returns:
-	Nothing
+	This should be called during XEH preinit.
 */
+#include "\z\infonly\addons\main\functions\functions.h"
 
 // Define category and sub-category names
 #define CBA_SETTINGS_CAT "Infantry Only"

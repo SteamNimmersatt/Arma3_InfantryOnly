@@ -1,3 +1,7 @@
+// CBA
+#include "script_component.hpp"
+#include "CfgEventHandlers.hpp"
+
 class CfgPatches
 {
 	class InfantryOnly
@@ -10,5 +14,4 @@ class CfgPatches
 
 class CfgFunctions {
 	#include "cfgfunctions.hpp"
-	#include "cfgfunctionsaddon.hpp"
 };

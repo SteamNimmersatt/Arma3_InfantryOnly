@@ -9,11 +9,8 @@ addons/
   main/
     functions/
       main/
-        fn_initMod.sqf          # Main initialization
-        fn_initModAddon.sqf     # Addon-specific initialization
         fn_initModClient.sqf    # Client-specific initialization
         fn_initModServer.sqf    # Server-specific initialization
-        fn_initCBASettings.sqf  # CBA settings initialization
         fn_handleVehicleSpawned.sqf  # CBA event handler for vehicle spawning
         fn_handleTurretLocality.sqf  # Handles turret locality changes
         fn_disableVehicleWeapons.sqf  # Core functionality

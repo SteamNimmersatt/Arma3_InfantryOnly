@@ -1,19 +1,6 @@
 #include "\z\infonly\addons\main\functions\functions.h"
 
-/*
-	Starts the mod. Must be executed on all clients & the server. Will be executed automatically
-	if running the mod as an addon. If running the mod as a script embedded 
-	inside a mission, this should be executed from the init.sqf file (e.g. call INFONLY_fnc_initMod; )
-*/
-
-// Prevent init from running twice
-if(!isNil "INFONLY_INIT") exitWith {}; 
-INFONLY_INIT = true;
-
-[INFONLY_LOGLEVEL_INFO, "Initializing Infantry Only mod."] call INFONLY_fnc_log;
-
-// Initialize CBA settings (universal - runs on all machines)
-call INFONLY_fnc_initCBASettings;
+[INFONLY_LOGLEVEL_INFO, "XEH postInit started."] call INFONLY_fnc_log;
 
 // Register CBA event handler for vehicle spawning (universal - runs on all machines)
 ["vehicleSpawned", INFONLY_fnc_handleVehicleSpawned] call CBA_fnc_addEventHandler;
