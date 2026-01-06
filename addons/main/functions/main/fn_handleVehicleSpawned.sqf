@@ -4,6 +4,11 @@
 	Handles vehicle spawned events from CBA event handlers.
 	This function is called whenever a new vehicle is spawned in the mission.
 	
+	This function processes vehicles that are local to the machine executing it.
+	In multiplayer environments:
+	- Server processes vehicles local to the server
+	- Clients process vehicles local to those clients
+	
 	Parameter(s):
 	_this select 0: OBJECT - The vehicle that was spawned
 	
@@ -31,9 +36,8 @@ if (_vehicle isKindOf "Man") exitWith {
 // Check whitelist - skip vehicles that are in the whitelist
 if (!isNil "INFONLY_vehicleWhitelistParsed" && {count INFONLY_vehicleWhitelistParsed > 0}) then {
 	private _vehicleType = toUpper(typeOf _vehicle);
-	if (_vehicleType in INFONLY_vehicleWhitelistParsed) then {
+	if (_vehicleType in INFONLY_vehicleWhitelistParsed) exitWith {
 		[INFONLY_LOGLEVEL_DEBUG, format ["Skipping whitelisted vehicle spawn: %1", _vehicleType]] call INFONLY_fnc_log;
-		exitWith {};
 	};
 };
 

@@ -7,6 +7,8 @@
 - **All Weapon Systems**: Removes ammunition from all turrets, weapons, and missile systems on vehicles
 - **Event-Driven Processing**: Uses CBA event handlers to respond immediately when vehicles are spawned
 - **Periodic Updates**: Checks for newly spawned vehicles every 30 seconds as a backup to event handlers
+- **Turret Locality Handling**: Addresses the issue where turrets become local to a machine when players enter them as gunners
+- **Frequent Locality Checks**: Checks for vehicles with changed locality every 5 seconds to ensure proper weapon disabling
 - **Efficient Processing**: Marks vehicles as processed to avoid redundant operations
 - **Selective Application**: Only affects actual vehicles, not infantry units
 
@@ -16,6 +18,7 @@
 - **Extended Compatibility**: Integrates with other CBA-based mods
 
 ### Initialization System
+- **Clear Execution Contexts**: Separated initialization logic into distinct server, client, and universal components
 - **Server-Client Architecture**: Properly initializes on both server and client machines
 - **Double Initialization Prevention**: Prevents the mod from initializing multiple times
 - **Addon Compatibility**: Works as both a mission script and addon

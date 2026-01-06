@@ -2,7 +2,17 @@
 
 /*
 	Disables all weapons on vehicles by setting their ammunition to zero.
-	This function should be called periodically to handle newly spawned vehicles.
+	This function processes vehicles that are local to the machine executing it.
+	
+	In multiplayer environments:
+	- Server processes vehicles local to the server
+	- Clients process vehicles local to those clients
+	- When a player becomes a gunner in a vehicle, that turret becomes local 
+	  to their machine, and this function will process it when called on that machine
+	
+	This function should be called:
+	- Periodically on server and clients to catch any vehicles that became local
+	- When a vehicle spawns (via event handler)
 	
 	Parameter(s):
 	None
