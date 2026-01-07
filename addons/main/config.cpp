@@ -1,6 +1,5 @@
-// CBA
-#include "script_component.hpp"
-#include "CfgEventHandlers.hpp"
+#include "config\script_component.hpp"
+#include "init\CfgEventHandlers.hpp"
 
 class CfgPatches
 {

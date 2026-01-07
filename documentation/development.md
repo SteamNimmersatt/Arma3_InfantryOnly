@@ -7,26 +7,12 @@ This guide provides information for developers who want to contribute to or exte
 ```
 addons/
   main/
-    functions/
-      main/
-        fn_initModClient.sqf    # Client-specific initialization
-        fn_initModServer.sqf    # Server-specific initialization
-        fn_handleVehicleSpawned.sqf  # CBA event handler for vehicle spawning
-        fn_handleTurretLocality.sqf  # Handles turret locality changes
-        fn_disableVehicleWeapons.sqf  # Core functionality
-        fn_log.sqf              # Logging system
-        fn_msgSideChat.sqf      # Side chat messaging
-        functions.h             # Header file with constants
+    config/                     # Configuration files (CBA definitions, Component config etc.)
+    init/                       # Initialization files (XEH, CBA settings etc.)
+    functions/                  # Mod functionality
     cfgfunctions.hpp            # Function registration
-    cfgfunctionsaddon.hpp       # Addon function registration
     config.cpp                  # Mod configuration
-    $PBOPREFIX$                 # PBO prefix file
-    addon.toml              # HEMTT build configuration
-documentation/
-  README.md                   # Main documentation
-  features.md                 # Feature list
-  getting_started.md          # User guide
-  development.md              # This file
+    addon.toml                  # HEMTT build configuration
 ```
 
 ## Coding Standards
@@ -61,7 +47,7 @@ documentation/
 ### Setting Up Development Environment
 1. Clone or download the repository
 2. Open the project in your preferred SQF editor (VS Code with SQF extension recommended)
-3. Make sure you have HEMTT installed for packaging (optional)
+3. Download HEMMT and place it into the project dir: https://github.com/BrettMayson/HEMTT/releases/latest/
 
 ### Making Changes
 1. Create a new branch for your changes
@@ -71,8 +57,7 @@ documentation/
 5. Submit a pull request
 
 ### Testing
-1. **Local Testing**: Test changes in the editor using the `recompile = 1` setting
-2. **Mission Testing**: Create a simple mission to test the mod functionality
+1. **Singleplayer Testing**: Test changes in the editor. Enable the mod "CBA_A3 - Addon - Cache Disable" to change code while Arma is running.
 3. **Multiplayer Testing**: Test in multiplayer environment if applicable
 4. **Performance Testing**: Monitor performance impact of your changes
 5. **CBA Settings Testing**: Test all CBA settings and their effects
@@ -82,7 +67,7 @@ documentation/
 The mod now fully integrates with CBA (Community Base Addons) for enhanced functionality:
 
 ### CBA Settings
-- Settings are defined in `fn_initCBASettings.sqf` using `CBA_fnc_addSetting`
+- Settings are defined in `init/initCBASettings.sqf` using `CBA_fnc_addSetting`
 - Settings include mod enable/disable, vehicle whitelist, and logging verbosity
 - Callback functions are used to process settings when they change
 
@@ -121,14 +106,14 @@ The mod now fully integrates with CBA (Community Base Addons) for enhanced funct
 2. Create a new SQF file following the naming convention
 3. Register the function in `cfgfunctions.hpp`
 4. Call the function from the appropriate initialization point:
-   - `fn_initMod.sqf` for universal initialization
+   - `init/XEH_postInit.sqf` for universal initialization
    - `fn_initModServer.sqf` for server-specific initialization
    - `fn_initModClient.sqf` for client-specific initialization
 5. Add logging for debugging and monitoring
 6. Update documentation
 
 ### Adding New CBA Settings
-1. Add the setting definition to `fn_initCBASettings.sqf`
+1. Add the setting definition to `init/initCBASettings.sqf`
 2. Use the setting in your functions by accessing the global variable
 3. Add callback functions if needed to process the setting when it changes
 4. Update documentation
