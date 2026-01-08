@@ -10,11 +10,11 @@
 private _logLevelNumeric = param [0];
 private _msg = param [1];
 
-// Use CBA setting for log level, default to INFO level (3) if setting not available
-private _logLevelSetting = if (isNil "INFONLY_logLevel") then { 3 } else { 
+// Use CBA setting for log level, default to DEBUG level (0) if setting not available
+private _logLevelSetting = if (isNil "INFONLY_logLevel") then { 0 } else { 
     private _setting = INFONLY_logLevel;
-    // Ensure the setting is a number, default to INFO level (3) if not
-    [3, _setting] select (_setting isEqualType 0)
+    // Ensure the setting is a number, default to DEBUG level (0) if not
+    [0, _setting] select (_setting isEqualType 0)
 };
 
 if (_logLevelNumeric < _logLevelSetting) exitWith {}; // Don't log if the message is below our current log level setting.

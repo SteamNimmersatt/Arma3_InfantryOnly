@@ -59,7 +59,7 @@
 	,"LIST"
 	,["Logging Verbosity", "Set the verbosity level for mod logging"]
 	,[CBA_SETTINGS_CAT, SUB_CAT_LOGGING]
-	,[["Disabled", "Errors Only", "Warnings and Errors", "Info", "Debug"], [0, 1, 2, 3, 4], 3]  // Default to "Info" level
+	,[["Errors", "Warnings", "Info", "Debug"], [3, 2, 1, 0], 1]  // Default to "Info" level
 	,true
 ] call CBA_fnc_addSetting;
 
