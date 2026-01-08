@@ -21,12 +21,17 @@ if (isNull _vehicle) exitWith {
 
 // Skip infantry units (we only want to handle actual vehicles)
 if (_vehicle isKindOf "Man") exitWith {
-	[INFONLY_LOGLEVEL_DEBUG, "Infantry unit passed to turret locality handler. Skipping."] call INFONLY_fnc_log;
+	[INFONLY_LOGLEVEL_DEBUG, "Object of kind 'Man' passed to turret locality handler. Skipping."] call INFONLY_fnc_log;
 };
 
 // Check if mod is enabled
 if (!isNil "INFONLY_enable" && {!INFONLY_enable}) exitWith {
 	[INFONLY_LOGLEVEL_DEBUG, "Mod is disabled. Skipping turret locality handling."] call INFONLY_fnc_log;
+};
+
+// Skip if vehicle is not local (ammo can only be set on local vehicles)
+if (!local _vehicle) exitWith {
+	[INFONLY_LOGLEVEL_DEBUG, format ["Vehicle %1 is not local. Skipping turret locality handling.", typeOf _vehicle]] call INFONLY_fnc_log;
 };
 
 // Check whitelist - skip vehicles that are in the whitelist
@@ -43,10 +48,15 @@ if (count _weapons == 0) exitWith {
 	[INFONLY_LOGLEVEL_DEBUG, format ["Vehicle %1 has no weapons. Skipping turret locality handling.", typeOf _vehicle]] call INFONLY_fnc_log;
 };
 
-// Skip if vehicle is not local (ammo can only be set on local vehicles)
-if (!local _vehicle) exitWith {
-	[INFONLY_LOGLEVEL_DEBUG, format ["Vehicle %1 is not local. Skipping turret locality handling.", typeOf _vehicle]] call INFONLY_fnc_log;
+// Check if this is a static weapon and if we should allow it to keep ammunition
+if (_vehicle isKindOf "StaticWeapon" && {!isNil "INFONLY_allowStaticTurretsAmmunition"} && {INFONLY_allowStaticTurretsAmmunition}) then {
+	[INFONLY_LOGLEVEL_DEBUG, format ["Static weapon %1 is allowed to keep ammunition. Skipping turret locality handling.", typeOf _vehicle]] call INFONLY_fnc_log;
+	// Mark as processed to avoid rechecking
+	_vehicle setVariable ["INFONLY_weaponsDisabled", true];
+	continue;
 };
+
+
 
 [INFONLY_LOGLEVEL_DEBUG, format ["Handling turret locality for vehicle: %1", typeOf _vehicle]] call INFONLY_fnc_log;
 
