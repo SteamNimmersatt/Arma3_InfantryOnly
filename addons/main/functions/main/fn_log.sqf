@@ -17,6 +17,8 @@ private _logLevelSetting = if (isNil "INFONLY_logLevel") then { 0 } else {
     [0, _setting] select (_setting isEqualType 0)
 };
 
+diag_log text format ["%1 - Logging debugging. logLevelNumeric: '%2', logLevelSetting: '%3'", "[InfOnly]", _logLevelNumeric, _logLevelSetting];
+
 if (_logLevelNumeric < _logLevelSetting) exitWith {}; // Don't log if the message is below our current log level setting.
 
 private _logLevelText = switch (_logLevelNumeric) do {
