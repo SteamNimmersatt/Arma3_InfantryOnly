@@ -43,9 +43,9 @@
 	}
 ] call CBA_fnc_addSetting;
 
-// Allow static turrets to keep their ammunition
+// Allow static turrets
 [
-	"INFONLY_allowStaticTurretsAmmunition"
+	"INFONLY_allowStaticTurrets"
 	,"CHECKBOX"
 	,["Allow Static Turret Ammunition", "Allow static turrets (machine guns, grenade launchers, etc.) to keep their ammunition. When unchecked, static turrets will have their ammunition removed like other vehicles."]
 	,[CBA_SETTINGS_CAT, SUB_CAT_VEHICLE]
