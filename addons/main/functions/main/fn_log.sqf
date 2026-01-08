@@ -11,13 +11,7 @@ private _logLevelNumeric = param [0];
 private _msg = param [1];
 
 // Use CBA setting for log level, default to DEBUG level (0) if setting not available
-private _logLevelSetting = if (isNil "INFONLY_logLevel") then { 0 } else { 
-    private _setting = INFONLY_logLevel;
-    // Ensure the setting is a number, default to DEBUG level (0) if not
-    [0, _setting] select (_setting isEqualType 0)
-};
-
-diag_log text format ["%1 - Logging debugging. logLevelNumeric: '%2', logLevelSetting: '%3'", "[InfOnly]", _logLevelNumeric, _logLevelSetting];
+private _logLevelSetting = if (isNil "INFONLY_logLevel") then { 0 } else { INFONLY_logLevel };
 
 if (_logLevelNumeric < _logLevelSetting) exitWith {}; // Don't log if the message is below our current log level setting.
 
@@ -29,4 +23,4 @@ private _logLevelText = switch (_logLevelNumeric) do {
 	default {"INVALID LOG LEVEL"};
 };
 
-diag_log text format ["%1 - %2 - %3", "[InfOnly]", _logLevelText, _msg];
+diag_log text format ["[%1][%2] - %3", "InfOnly", _logLevelText, _msg];

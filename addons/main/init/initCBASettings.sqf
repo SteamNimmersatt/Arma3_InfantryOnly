@@ -53,14 +53,15 @@
 	,true
 ] call CBA_fnc_addSetting;
 
-// Logging verbosity setting
+// Log Level
 [
-	"INFONLY_logLevel"
-	,"LIST"
-	,["Logging Verbosity", "Set the verbosity level for mod logging"]
-	,[CBA_SETTINGS_CAT, SUB_CAT_LOGGING]
-	,[["Errors", "Warnings", "Info", "Debug"], [3, 2, 1, 0], 1]  // Default to "Info" level
-	,true
+    "INFONLY_logLevel",																// Unique setting name.  Matches resulting variable name.
+    "LIST",																			// Type of setting.  Can be CHECKBOX, EDITBOX, LIST, SLIDER, COLOR, TIME.
+    ["Logging Verbosity", "Set the mods log level. 'Debug' will log all levels."],	// Display name or display name + tooltip (optional, default: same as setting name).
+    [CBA_SETTINGS_CAT, SUB_CAT_LOGGING],											// Category for the settings menu + optional sub-category.
+    [[3, 2, 1, 0], ['Error', 'Warning', 'Info', 'Debug'], 2],						// Extra properties of the setting depending of _settingType. List: [_values, _valueTitles, _defaultIndex].
+    true																			// '_isGlobal' flag. Set this to true to always have this setting synchronized between all clients in multiplayer
 ] call CBA_fnc_addSetting;
+
 
 [INFONLY_LOGLEVEL_INFO, "CBA settings initialized."] call INFONLY_fnc_log;
