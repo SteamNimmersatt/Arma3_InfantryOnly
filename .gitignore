@@ -8,3 +8,5 @@ hemtt.exe
 .aider*
 build_launch.sh
 .idea
+.hemttprivatekey
+.biprivatekey
