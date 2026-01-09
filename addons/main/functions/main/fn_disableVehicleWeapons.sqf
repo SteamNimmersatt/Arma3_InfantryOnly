@@ -47,16 +47,16 @@ private _processedCount = 0;
 		continue;
 	};
 	
+	// Check if we've already processed this vehicle to avoid unnecessary work
+	if (!isNil {_vehicle getVariable "INFONLY_weaponsDisabled"}) then {
+		continue;
+	};
+	
 	// Check if vehicle type is allowed
 	if ([_vehicle] call INFONLY_fnc_isVehicleTypeAllowed) then {
 		[INFONLY_LOGLEVEL_DEBUG, format ["Vehicle of type '%1' is allowed to keep ammunition. Skipping.", typeOf _vehicle]] call INFONLY_fnc_log;
 		// Mark as processed to avoid rechecking
 		_vehicle setVariable ["INFONLY_weaponsDisabled", true];
-		continue;
-	};
-	
-	// Check if we've already processed this vehicle to avoid unnecessary work
-	if (!isNil {_vehicle getVariable "INFONLY_weaponsDisabled"}) then {
 		continue;
 	};
 	

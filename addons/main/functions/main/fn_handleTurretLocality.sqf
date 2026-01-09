@@ -24,6 +24,11 @@ if (_vehicle isKindOf "Man") exitWith {
 	[INFONLY_LOGLEVEL_DEBUG, "Object of kind 'Man' passed to turret locality handler. Skipping."] call INFONLY_fnc_log;
 };
 
+// Check if we've already processed this vehicle locally to avoid unnecessary work
+if (!isNil {_vehicle getVariable "INFONLY_weaponsDisabledLocal"}) exitWith {
+	[INFONLY_LOGLEVEL_DEBUG, format ["Vehicle %1 has already been processed locally. Skipping.", typeOf _vehicle]] call INFONLY_fnc_log;
+};
+
 // Check if mod is enabled
 if (!isNil "INFONLY_enable" && {!INFONLY_enable}) exitWith {
 	[INFONLY_LOGLEVEL_DEBUG, "Mod is disabled. Skipping turret locality handling."] call INFONLY_fnc_log;
@@ -37,8 +42,6 @@ if (!local _vehicle) exitWith {
 // Check if vehicle type is allowed
 if ([_vehicle] call INFONLY_fnc_isVehicleTypeAllowed) exitWith {
 	[INFONLY_LOGLEVEL_DEBUG, format ["Vehicle of type '%1' is allowed to keep ammunition. Skipping turret locality handling.", typeOf _vehicle]] call INFONLY_fnc_log;
-	// Mark as processed to avoid rechecking
-	_vehicle setVariable ["INFONLY_weaponsDisabled", true];
 };
 
 
@@ -49,5 +52,5 @@ if ([_vehicle] call INFONLY_fnc_isVehicleTypeAllowed) exitWith {
 // This affects all turrets and weapons on the vehicle that are local to this machine
 _vehicle setVehicleAmmo 0;
 
-// Mark vehicle as processed
-_vehicle setVariable ["INFONLY_weaponsDisabled", true];
+// Mark vehicle as processed locally
+_vehicle setVariable ["INFONLY_weaponsDisabledLocal", true];

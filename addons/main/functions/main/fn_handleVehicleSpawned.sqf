@@ -33,6 +33,11 @@ if (_vehicle isKindOf "Man") exitWith {
 	[INFONLY_LOGLEVEL_DEBUG, "Infantry unit passed to spawn handler. Skipping."] call INFONLY_fnc_log;
 };
 
+// Check if we've already processed this vehicle to avoid unnecessary work
+if (!isNil {_vehicle getVariable "INFONLY_weaponsDisabled"}) exitWith {
+	[INFONLY_LOGLEVEL_DEBUG, format ["Vehicle %1 has already been processed. Skipping.", typeOf _vehicle]] call INFONLY_fnc_log;
+};
+
 // Check if vehicle type is allowed
 if ([_vehicle] call INFONLY_fnc_isVehicleTypeAllowed) exitWith {
 	[INFONLY_LOGLEVEL_DEBUG, format ["Vehicle of type '%1' is allowed to keep ammunition. Skipping vehicle spawn handling.", typeOf _vehicle]] call INFONLY_fnc_log;
