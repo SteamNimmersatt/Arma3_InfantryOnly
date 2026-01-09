@@ -62,7 +62,7 @@ if(isMultiplayer) then {
 				
 				// Skip if vehicle has no weapons
 				private _weapons = weapons _vehicle;
-				if (count _weapons == 0) then {
+				if (_weapons isEqualTo []) then {
 					continue;
 				};
 				

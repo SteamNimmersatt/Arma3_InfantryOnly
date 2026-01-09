@@ -40,7 +40,7 @@ if (!isNil "INFONLY_vehicleWhitelistParsed" && {count INFONLY_vehicleWhitelistPa
 
 // Check if vehicle has no weapons
 private _weapons = weapons _vehicle;
-if (count _weapons == 0) exitWith {
+if (_weapons isEqualTo []) exitWith {
 	true
 };
 
