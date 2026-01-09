@@ -1,4 +1,4 @@
-#include "functions.h"
+#include "\z\infonly\addons\main\functions\functions.h"
 
 /*
 	Starts the server-side components of the mod. This function is called automatically
