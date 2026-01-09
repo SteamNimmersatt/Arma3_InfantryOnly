@@ -23,4 +23,4 @@ private _logLevelText = switch (_logLevelNumeric) do {
 	default {"INVALID LOG LEVEL"};
 };
 
-diag_log text format ["[%1][%2] - %3", "InfOnly", _logLevelText, _msg];
+diag_log text format ["[%1] %2: %3", "InfOnly", _logLevelText, _msg];
