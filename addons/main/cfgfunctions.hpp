@@ -15,6 +15,7 @@ class InfantryOnly
 		class log {description = ""; recompile = 1;};
 		class msgSideChat {description = ""; recompile = 1;};
 		class disableVehicleWeapons {description = "Disables all weapons on vehicles by setting their ammunition to zero"; recompile = 1;};
+		class isVehicleTypeAllowed {description = "Determines if a vehicle's type is allowed based on CBA settings"; recompile = 1;};
 	};
 	
 };

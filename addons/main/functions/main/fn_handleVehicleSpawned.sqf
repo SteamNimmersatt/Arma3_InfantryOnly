@@ -33,30 +33,16 @@ if (_vehicle isKindOf "Man") exitWith {
 	[INFONLY_LOGLEVEL_DEBUG, "Infantry unit passed to spawn handler. Skipping."] call INFONLY_fnc_log;
 };
 
-// Check whitelist - skip vehicles that are in the whitelist
-if (!isNil "INFONLY_vehicleWhitelistParsed" && {count INFONLY_vehicleWhitelistParsed > 0}) then {
-	private _vehicleType = toUpper(typeOf _vehicle);
-	if (_vehicleType in INFONLY_vehicleWhitelistParsed) exitWith {
-		[INFONLY_LOGLEVEL_DEBUG, format ["Skipping whitelisted vehicle spawn: %1", _vehicleType]] call INFONLY_fnc_log;
-	};
-};
-
-// Skip if vehicle has no weapons
-private _weapons = weapons _vehicle;
-if (count _weapons == 0) exitWith {
-	[INFONLY_LOGLEVEL_DEBUG, format ["Vehicle %1 has no weapons. Skipping.", typeOf _vehicle]] call INFONLY_fnc_log;
+// Check if vehicle type is allowed
+if ([_vehicle] call INFONLY_fnc_isVehicleTypeAllowed) exitWith {
+	[INFONLY_LOGLEVEL_DEBUG, format ["Vehicle of type '%1' is allowed to keep ammunition. Skipping vehicle spawn handling.", typeOf _vehicle]] call INFONLY_fnc_log;
+	// Mark as processed to avoid rechecking
+	_vehicle setVariable ["INFONLY_weaponsDisabled", true];
 };
 
 // Skip if vehicle is not local (ammo can only be set on local vehicles)
 if (!local _vehicle) exitWith {
 	[INFONLY_LOGLEVEL_DEBUG, format ["Vehicle %1 is not local. Skipping.", typeOf _vehicle]] call INFONLY_fnc_log;
-};
-
-// Check if this is a static weapon and if we should allow it to keep ammunition
-if (_vehicle isKindOf "StaticWeapon" && {!isNil "INFONLY_allowStaticTurrets"} && {INFONLY_allowStaticTurrets}) exitWith {
-	[INFONLY_LOGLEVEL_DEBUG, format ["Static weapon %1 is allowed to keep ammunition. Skipping.", typeOf _vehicle]] call INFONLY_fnc_log;
-	// Mark as processed to avoid rechecking
-	_vehicle setVariable ["INFONLY_weaponsDisabled", true];
 };
 
 [INFONLY_LOGLEVEL_DEBUG, format ["Disabling weapons on newly spawned vehicle: %1", typeOf _vehicle]] call INFONLY_fnc_log;

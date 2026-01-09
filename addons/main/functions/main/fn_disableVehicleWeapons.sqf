@@ -47,26 +47,9 @@ private _processedCount = 0;
 		continue;
 	};
 	
-	// Check whitelist - skip vehicles that are in the whitelist
-	if (!isNil "INFONLY_vehicleWhitelistParsed" && {count INFONLY_vehicleWhitelistParsed > 0}) then {
-		private _vehicleType = toUpper(typeOf _vehicle);
-		if (_vehicleType in INFONLY_vehicleWhitelistParsed) then {
-			[INFONLY_LOGLEVEL_DEBUG, format ["Skipping whitelisted vehicle: %1", _vehicleType]] call INFONLY_fnc_log;
-			continue;
-		};
-	};
-	
-	// Skip if vehicle has no weapons
-	private _weapons = weapons _vehicle;
-	if (count _weapons == 0) then {
-		// Even if no weapons now, mark as processed to avoid rechecking
-		_vehicle setVariable ["INFONLY_weaponsDisabled", true];
-		continue;
-	};
-	
-	// Check if this is a static weapon and if we should allow it to keep ammunition
-	if (_vehicle isKindOf "StaticWeapon" && {!isNil "INFONLY_allowStaticTurrets"} && {INFONLY_allowStaticTurrets}) then {
-		[INFONLY_LOGLEVEL_DEBUG, format ["Static weapon %1 is allowed to keep ammunition. Skipping.", typeOf _vehicle]] call INFONLY_fnc_log;
+	// Check if vehicle type is allowed
+	if ([_vehicle] call INFONLY_fnc_isVehicleTypeAllowed) then {
+		[INFONLY_LOGLEVEL_DEBUG, format ["Vehicle of type '%1' is allowed to keep ammunition. Skipping.", typeOf _vehicle]] call INFONLY_fnc_log;
 		// Mark as processed to avoid rechecking
 		_vehicle setVariable ["INFONLY_weaponsDisabled", true];
 		continue;

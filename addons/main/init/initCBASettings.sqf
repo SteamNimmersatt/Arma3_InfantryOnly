@@ -72,6 +72,56 @@
     true																			// '_isGlobal' flag. Set this to true to always have this setting synchronized between all clients in multiplayer
 ] call CBA_fnc_addSetting;
 
+// Allow technicals
+[
+    "INFONLY_allowTechnicals",														// Unique setting name.  Matches resulting variable name.
+    "CHECKBOX",																		// Type of setting.  Can be CHECKBOX, EDITBOX, LIST, SLIDER, COLOR, TIME.
+    ["Allow Technicals", "Allow technical vehicles (light wheeled armed vehicles like jeeps with machine guns) to keep their ammunition. When unchecked, technicals will have their ammunition removed like other vehicles."],	// Display name or display name + tooltip (optional, default: same as setting name).
+    [CBA_SETTINGS_CAT, SUB_CAT_VEHICLE],											// Category for the settings menu + optional sub-category.
+    false,																			// Default value for the setting.
+    true																			// '_isGlobal' flag. Set this to true to always have this setting synchronized between all clients in multiplayer
+] call CBA_fnc_addSetting;
+
+// Allow APCs / IFVs
+[
+    "INFONLY_allowAPCs",															// Unique setting name.  Matches resulting variable name.
+    "CHECKBOX",																		// Type of setting.  Can be CHECKBOX, EDITBOX, LIST, SLIDER, COLOR, TIME.
+    ["Allow APCs / IFVs", "Allow armored personnel carriers and infantry fighting vehicles to keep their ammunition. When unchecked, APCs/IFVs will have their ammunition removed like other vehicles."],	// Display name or display name + tooltip (optional, default: same as setting name).
+    [CBA_SETTINGS_CAT, SUB_CAT_VEHICLE],											// Category for the settings menu + optional sub-category.
+    false,																			// Default value for the setting.
+    true																			// '_isGlobal' flag. Set this to true to always have this setting synchronized between all clients in multiplayer
+] call CBA_fnc_addSetting;
+
+// Allow Tanks
+[
+    "INFONLY_allowTanks",															// Unique setting name.  Matches resulting variable name.
+    "CHECKBOX",																		// Type of setting.  Can be CHECKBOX, EDITBOX, LIST, SLIDER, COLOR, TIME.
+    ["Allow Tanks", "Allow main battle tanks and tank destroyers to keep their ammunition. When unchecked, tanks will have their ammunition removed like other vehicles."],	// Display name or display name + tooltip (optional, default: same as setting name).
+    [CBA_SETTINGS_CAT, SUB_CAT_VEHICLE],											// Category for the settings menu + optional sub-category.
+    false,																			// Default value for the setting.
+    true																			// '_isGlobal' flag. Set this to true to always have this setting synchronized between all clients in multiplayer
+] call CBA_fnc_addSetting;
+
+// Allow Helicopters
+[
+    "INFONLY_allowHelis",															// Unique setting name.  Matches resulting variable name.
+    "CHECKBOX",																		// Type of setting.  Can be CHECKBOX, EDITBOX, LIST, SLIDER, COLOR, TIME.
+    ["Allow Helicopters", "Allow helicopters to keep their ammunition. When unchecked, helicopters will have their ammunition removed like other vehicles."],	// Display name or display name + tooltip (optional, default: same as setting name).
+    [CBA_SETTINGS_CAT, SUB_CAT_VEHICLE],											// Category for the settings menu + optional sub-category.
+    false,																			// Default value for the setting.
+    true																			// '_isGlobal' flag. Set this to true to always have this setting synchronized between all clients in multiplayer
+] call CBA_fnc_addSetting;
+
+// Allow Planes
+[
+    "INFONLY_allowPlanes",															// Unique setting name.  Matches resulting variable name.
+    "CHECKBOX",																		// Type of setting.  Can be CHECKBOX, EDITBOX, LIST, SLIDER, COLOR, TIME.
+    ["Allow Planes", "Allow fixed-wing aircraft to keep their ammunition. When unchecked, planes will have their ammunition removed like other vehicles."],	// Display name or display name + tooltip (optional, default: same as setting name).
+    [CBA_SETTINGS_CAT, SUB_CAT_VEHICLE],											// Category for the settings menu + optional sub-category.
+    false,																			// Default value for the setting.
+    true																			// '_isGlobal' flag. Set this to true to always have this setting synchronized between all clients in multiplayer
+] call CBA_fnc_addSetting;
+
 
 
 [INFONLY_LOGLEVEL_INFO, "CBA settings initialized."] call INFONLY_fnc_log;
