@@ -1,4 +1,4 @@
 [sqf.var_all_caps]
 options.ignore = [
-    "AIC_*"
+    "INFONLY_*"
 ]

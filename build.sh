@@ -13,7 +13,7 @@ download_hemtt() {
 }
 
 build_mod() {
-    log "------------------Building the mod.------------------"
+    log "------------------Running 'hemtt dev'------------------"
     "$HEMTT_PATH" dev # This will create a symbolic link at "<arma3 dir>/z/infonly" which allows us to use load the mod from this directory.
 }
 

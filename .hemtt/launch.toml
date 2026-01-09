@@ -11,6 +11,10 @@ file_patching = true
 
 parameters = [
     "-noLauncher",
+    "-noSplash",
+    "-skipIntro",
+    "-world=empty",
     "-nopause",
-    "-world=empty"
+    "-debug",
+    "-showScriptErrors"
 ]

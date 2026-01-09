@@ -20,20 +20,15 @@ download_hemtt() {
     fi
 }
 
-build_mod() {
-    log "------------------Building the mod.------------------"
-    "$HEMTT_PATH" dev # This will create a symbolic link at "<arma3 dir>/z/infonly" which allows us to use load the mod from this directory.
+run_hemmt() {
+    log "------------------Running 'hemtt launch'------------------"
+    "$HEMTT_PATH" launch # This will build a 'dev' version and launch Arma3 using the parameters defined in '/.hemmt/launch.toml.
 }
 
-launch_arma() {
-    log "------------------Launching Arma.------------------"
-    steam -applaunch 107410 $LAUNCH_PARAMETERS &
-}
 
 MOD_LIST="z\infonly"
 LAUNCH_PARAMETERS="-noLauncher -filePatching -debug -showScriptErrors -skipIntro -noSplash -nopause -world=empty -mod=$MOD_LIST"
 HEMTT_PATH="./hemtt"
 
 download_hemtt
-build_mod
-launch_arma
+run_hemmt
