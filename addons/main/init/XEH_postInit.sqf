@@ -1,4 +1,4 @@
-#include "..\functions\main\functions.h"
+#include "\z\infonly\addons\main\functions\functions.h"
 
 [INFONLY_LOGLEVEL_INFO, "XEH postInit started."] call INFONLY_fnc_log;
 

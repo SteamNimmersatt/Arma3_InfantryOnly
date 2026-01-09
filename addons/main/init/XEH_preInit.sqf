@@ -1,4 +1,4 @@
-#include "..\config\script_component.hpp"
+#include "\z\infonly\addons\main\config\script_component.hpp"
 
 ADDON = false;
 
