@@ -19,7 +19,7 @@
 [
     "INFONLY_enable",																// Unique setting name.  Matches resulting variable name.
     "CHECKBOX",																		// Type of setting.  Can be CHECKBOX, EDITBOX, LIST, SLIDER, COLOR, TIME.
-    ["Enable Infantry Only Mod", "Enable or disable the Infantry Only mod functionality"],	// Display name or display name + tooltip (optional, default: same as setting name).
+    ["Enable Mod", "Enable or disable the whole mod."],	// Display name or display name + tooltip (optional, default: same as setting name).
     [CBA_SETTINGS_CAT, SUB_CAT_GENERAL],											// Category for the settings menu + optional sub-category.
     true,																			// Default value for the setting.
     true																			// '_isGlobal' flag. Set this to true to always have this setting synchronized between all clients in multiplayer
@@ -44,7 +44,7 @@
 [
     "INFONLY_vehicleWhitelist",														// Unique setting name.  Matches resulting variable name.
     "EDITBOX",																		// Type of setting.  Can be CHECKBOX, EDITBOX, LIST, SLIDER, COLOR, TIME.
-    ["Vehicle Whitelist", "Comma-separated list of vehicle classnames that should NOT have their weapons disabled (e.g. B_APC_Wheeled_01_cannon_F,O_Heli_Light_02_unarmed_F)"],	// Display name or display name + tooltip (optional, default: same as setting name).
+    ["Vehicle Whitelist", "Comma-separated list of vehicle classnames that should NOT have their weapons depleted (e.g. B_APC_Wheeled_01_cannon_F,O_Heli_Light_02_unarmed_F)"],	// Display name or display name + tooltip (optional, default: same as setting name).
     [CBA_SETTINGS_CAT, SUB_CAT_VEHICLE],											// Category for the settings menu + optional sub-category.
     "",																				// Default value for the setting.
     true,																			// '_isGlobal' flag. Set this to true to always have this setting synchronized between all clients in multiplayer
@@ -67,7 +67,7 @@
 [
     "INFONLY_allowStaticTurrets",													// Unique setting name.  Matches resulting variable name.
     "CHECKBOX",																		// Type of setting.  Can be CHECKBOX, EDITBOX, LIST, SLIDER, COLOR, TIME.
-    ["Allow Static Turret Ammunition", "Allow static turrets (machine guns, grenade launchers, etc.) to keep their ammunition. When unchecked, static turrets will have their ammunition removed like other vehicles."],	// Display name or display name + tooltip (optional, default: same as setting name).
+    ["Allow Static Turrets", "Allow static turrets (machine guns, grenade launchers, etc.) to keep their ammunition. When unchecked, static turrets will have their ammunition removed like other vehicles."],	// Display name or display name + tooltip (optional, default: same as setting name).
     [CBA_SETTINGS_CAT, SUB_CAT_VEHICLE],											// Category for the settings menu + optional sub-category.
     true,																			// Default value for the setting.
     true																			// '_isGlobal' flag. Set this to true to always have this setting synchronized between all clients in multiplayer
