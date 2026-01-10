@@ -12,17 +12,6 @@ The mod works by setting the ammunition for all vehicle weapons to zero, effecti
 3. **Weapon Disabling**: For each vehicle with weapons, the mod removes all ammunition from turrets and weapons.
 4. **Efficiency**: Vehicles are marked as processed to avoid redundant operations.
 
-### Files Structure
-- `addons/main/functions/main/fn_initMod.sqf` - Main initialization function
-- `addons/main/functions/main/fn_initModClient.sqf` - Client-specific initialization
-- `addons/main/functions/main/fn_initModServer.sqf` - Server-specific initialization
-- `addons/main/functions/main/fn_initModAddon.sqf` - Addon-specific initialization
-- `addons/main/functions/main/fn_initCBASettings.sqf` - CBA settings initialization
-- `addons/main/functions/main/fn_handleVehicleSpawned.sqf` - CBA event handler for vehicle spawning
-- `addons/main/functions/main/fn_handleTurretLocality.sqf` - Handles turret locality changes
-- `addons/main/functions/main/fn_disableVehicleWeapons.sqf` - Core function that disables vehicle weapons
-- `addons/main/cfgfunctions.hpp` - Function registration
-
 ## CBA Integration
 The mod is now fully integrated with CBA (Community Base Addons):
 
@@ -37,13 +26,6 @@ The mod is now fully integrated with CBA (Community Base Addons):
    - Logging verbosity level
 
 3. **Performance Improvements**: Event-driven approach reduces CPU usage compared to periodic polling.
-
-## Extending the Mod
-To extend the mod functionality:
-
-1. Create new function files in `addons/main/functions/main/`
-2. Register new functions in `addons/main/cfgfunctions.hpp`
-3. Call new functions from the appropriate initialization points
 
 ## Debugging
 The mod uses the INFONLY logging system with different levels:
