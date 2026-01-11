@@ -1,9 +1,6 @@
 # Arma3_InfantryOnly
 Arma3 mod which enforces infantry-only gameplay
 
-## Requirements
-- [CBA_A3](https://github.com/CBATeam/CBA_A3) - Community Base Addons for Arma 3
-
 ## Features
 This mod disables all weapons on vehicles, forcing infantry-only gameplay while still allowing vehicles for transportation. Key features include:
 
@@ -14,13 +11,23 @@ This mod disables all weapons on vehicles, forcing infantry-only gameplay while 
 - **Whitelist Support**: Configure specific vehicle types to retain their weapons
 - **Multiplayer Compatible**: Works in both singleplayer and multiplayer environments
 
-## Configuration
-The mod includes several configurable options accessible through the CBA settings interface:
-- Enable/Disable the mod
-- Vehicle whitelist (specify vehicle types that should retain weapons)
-- Logging verbosity level
+## Development
+### Initial setup
 
-## Installation
-1. Ensure CBA_A3 is installed and enabled
-2. Download and install this mod
-3. Enable both mods in Arma 3 launch parameters or through the Steam launcher
+    Download hemtt and place it in the root directory of the git repository.
+    Subscribe to the development mods listed in file "hemtt/launch.toml", section "workshop".
+
+### Building the mod
+
+    Run "hemtt dev" (Windows: "hemtt.exe dev") to create a dev build.
+    Run "hemtt release" to create a signed release build.
+    See the full hemtt documentation for more information.
+
+### Editing code while Arma3 is running
+
+    Run the game via "hemtt launch" (Windows: "hemtt.exe launch")
+        This will create a symbolic link in the Arma3 game directory to the source code of the git repository.
+        It will build the mod and run the game as defined in "hemtt/launch.toml".
+    After a code change you need to restart the mission to see the change.
+        You need to restart the game if you've added any files. You will also need to restart in some other special cases like new addon settings.
+
