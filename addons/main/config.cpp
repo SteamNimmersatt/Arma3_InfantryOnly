@@ -3,11 +3,17 @@
 
 class CfgPatches
 {
-	class InfantryOnly
+	class ADDON
 	{
-		units[] = {};
-		requiredVersion = 1.0;
-		requiredAddons[] = {"A3_Modules_F", "cba_main", "cba_xeh"};
+		name = COMPONENT_NAME;
+        units[] = {};
+        weapons[] = {};
+        requiredVersion = REQUIRED_VERSION;
+        requiredAddons[] = {"A3_Modules_F", "cba_main", "cba_xeh"};
+        author = ECSTRING(common);
+        authors[] = {"Nimmersatt"};
+        url = ECSTRING(main,URL);
+        VERSION_CONFIG;
 	};
 };
 

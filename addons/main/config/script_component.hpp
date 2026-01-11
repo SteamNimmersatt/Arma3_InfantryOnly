@@ -1,5 +1,5 @@
 #define COMPONENT main
-#define COMPONENT_BEAUTIFIED Main
+#define COMPONENT_BEAUTIFIED MAIN
 
 #include "\z\infonly\addons\main\config\script_mod.hpp"
 #include "\z\infonly\addons\main\config\script_macros.hpp"

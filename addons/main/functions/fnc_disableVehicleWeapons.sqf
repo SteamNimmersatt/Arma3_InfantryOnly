@@ -23,10 +23,10 @@
 
 // Check if mod is enabled
 if (!isNil "INFONLY_enable" && {!INFONLY_enable}) exitWith {
-	[INFONLY_LOGLEVEL_DEBUG, "Mod is disabled. Skipping vehicle weapon disabling."] call INFONLY_fnc_log;
+	[INFONLY_LOGLEVEL_DEBUG, "Mod is disabled. Skipping vehicle weapon disabling."] call infonly_main_fnc_log;
 };
 
-[INFONLY_LOGLEVEL_DEBUG, "Checking for vehicles to disable weapons on..."] call INFONLY_fnc_log;
+[INFONLY_LOGLEVEL_DEBUG, "Checking for vehicles to disable weapons on..."] call infonly_main_fnc_log;
 
 // Get all vehicles in the mission
 private _allVehicles = vehicles;
@@ -53,8 +53,8 @@ private _processedCount = 0;
 	};
 	
 	// Check if vehicle type is allowed
-	if ([_vehicle] call INFONLY_fnc_isVehicleTypeAllowed) then {
-		[INFONLY_LOGLEVEL_DEBUG, format ["Vehicle of type '%1' is allowed to keep ammunition. Skipping.", typeOf _vehicle]] call INFONLY_fnc_log;
+	if ([_vehicle] call infonly_main_fnc_isVehicleTypeAllowed) then {
+		[INFONLY_LOGLEVEL_DEBUG, format ["Vehicle of type '%1' is allowed to keep ammunition. Skipping.", typeOf _vehicle]] call infonly_main_fnc_log;
 		// Mark as processed to avoid rechecking
 		_vehicle setVariable ["INFONLY_weaponsDisabled", true];
 		continue;
@@ -65,7 +65,7 @@ private _processedCount = 0;
 		continue;
 	};
 	
-	[INFONLY_LOGLEVEL_DEBUG, format ["Disabling weapons on vehicle: %1", typeOf _vehicle]] call INFONLY_fnc_log;
+	[INFONLY_LOGLEVEL_DEBUG, format ["Disabling weapons on vehicle: %1", typeOf _vehicle]] call infonly_main_fnc_log;
 	
 	// Set vehicle ammunition to zero using the built-in Arma 3 command
 	// This affects all turrets and weapons on the vehicle
@@ -76,4 +76,4 @@ private _processedCount = 0;
 	_processedCount = _processedCount + 1;
 } forEach _allVehicles;
 
-[INFONLY_LOGLEVEL_DEBUG, format ["Finished checking vehicles. Processed %1 vehicles.", _processedCount]] call INFONLY_fnc_log;
+[INFONLY_LOGLEVEL_DEBUG, format ["Finished checking vehicles. Processed %1 vehicles.", _processedCount]] call infonly_main_fnc_log;

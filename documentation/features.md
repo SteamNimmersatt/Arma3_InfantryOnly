@@ -31,7 +31,7 @@
 ### Code Quality
 - **Modular Design**: Functions are separated into individual files for maintainability
 - **Clear Documentation**: Each function includes detailed header comments
-- **Standard Naming Convention**: Uses INFONLY_fnc_ prefix for all functions
+- **Standard Naming Convention**: Uses infonly_main_fnc_ prefix for all functions
 - **Error Handling**: Includes checks for null objects and other edge cases
 
 ## Configurable Settings

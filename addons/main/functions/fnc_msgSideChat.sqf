@@ -26,7 +26,7 @@ if (_typeName == "OBJECT") then {
 	}
 };
 if (isNil "_msgSender") exitWith {
-	[INFONLY_LOGLEVEL_ERROR, format ["Invalid entity of type '%1' passed to fn_msgSideChat for side chat message '%2'.", typeName _entity, _msg]] call INFONLY_fnc_log;
+	[INFONLY_LOGLEVEL_ERROR, format ["Invalid entity of type '%1' passed to fn_msgSideChat for side chat message '%2'.", typeName _entity, _msg]] call infonly_main_fnc_log;
 };
 
 // Give radio if not present

@@ -99,31 +99,6 @@ The mod now fully integrates with CBA (Community Base Addons) for enhanced funct
 2. **Logging**: Add timing information to critical functions
 3. **Memory Management**: Avoid memory leaks by properly cleaning up variables
 
-## Extending Functionality
-
-### Adding New Features
-1. Identify the appropriate location for your new function
-2. Create a new SQF file following the naming convention
-3. Register the function in `cfgfunctions.hpp`
-4. Call the function from the appropriate initialization point:
-   - `init/XEH_postInit.sqf` for universal initialization
-   - `fn_initModServer.sqf` for server-specific initialization
-   - `fn_initModClient.sqf` for client-specific initialization
-5. Add logging for debugging and monitoring
-6. Update documentation
-
-### Adding New CBA Settings
-1. Add the setting definition to `init/initCBASettings.sqf`
-2. Use the setting in your functions by accessing the global variable
-3. Add callback functions if needed to process the setting when it changes
-4. Update documentation
-
-### Mod Compatibility
-1. **Namespace Isolation**: Use unique prefixes to avoid conflicts
-2. **Event Handling**: Use CBA event handlers when possible for better compatibility
-3. **Graceful Degradation**: Handle cases where required mods are not present
-4. **CBA Dependency**: The mod now requires CBA, so document this dependency
-
 ## Release Process
 
 ### Versioning
@@ -133,7 +108,7 @@ Follow semantic versioning (MAJOR.MINOR.PATCH):
 - PATCH: Bug fixes
 
 ### Packaging
-1. Update version information in `mod.cpp`
+1. Update version information in `script_version.hpp` and `.hemtt/project.toml`
 2. Update changelog
 3. Package using HEMTT
 4. Test packaged mod

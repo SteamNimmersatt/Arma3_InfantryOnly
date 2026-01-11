@@ -1,5 +1,3 @@
-#include "\z\infonly\addons\main\functions\functions.h"
-
 /*
 	Starts the client-side components of the mod. This function is called automatically
 	by fn_initMod.sqf when running on a client in multiplayer.
@@ -16,12 +14,12 @@ if(!hasInterface) exitWith {};
 // Wait for player to be initialized
 waitUntil {!isNil "INFONLY_INIT_STARTUP_SCRIPTS_EXECUTED" && !isNull player};
 
-[INFONLY_LOGLEVEL_INFO, "Initializing Infantry Only client components."] call INFONLY_fnc_log;
+[INFONLY_LOGLEVEL_INFO, "Initializing Infantry Only client components."] call infonly_main_fnc_log;
 
 // Register CBA event handler for vehicle spawning on client
-["vehicleSpawned", INFONLY_fnc_handleVehicleSpawned] call CBA_fnc_addEventHandler;
+["vehicleSpawned", infonly_main_fnc_handleVehicleSpawned] call CBA_fnc_addEventHandler;
 
-[INFONLY_LOGLEVEL_INFO, "Registered CBA event handler for vehicle spawning on client."] call INFONLY_fnc_log;
+[INFONLY_LOGLEVEL_INFO, "Registered CBA event handler for vehicle spawning on client."] call infonly_main_fnc_log;
 
 // Handle vehicles that are local to this client (important for multiplayer)
 // When a player gets in as gunner, turrets become local to their machine
@@ -30,7 +28,7 @@ if(isMultiplayer) then {
 		// Periodic check for new vehicles (backup to event handlers)
 		while {true} do {
 			sleep 30; // Check every 30 seconds for locally controlled vehicles
-			call INFONLY_fnc_disableVehicleWeapons;
+			call infonly_main_fnc_disableVehicleWeapons;
 		};
 	};
 	
@@ -67,10 +65,10 @@ if(isMultiplayer) then {
 				};
 				
 				// Handle turret locality for this vehicle
-				[_vehicle] call INFONLY_fnc_handleTurretLocality;
+				[_vehicle] call infonly_main_fnc_handleTurretLocality;
 			} forEach _allVehicles;
 		};
 	};
 };
 
-[INFONLY_LOGLEVEL_INFO, "Infantry Only client components initialized."] call INFONLY_fnc_log;
+[INFONLY_LOGLEVEL_INFO, "Infantry Only client components initialized."] call infonly_main_fnc_log;

@@ -125,4 +125,4 @@
 
 
 
-[INFONLY_LOGLEVEL_INFO, "CBA settings initialized."] call INFONLY_fnc_log;
+[INFONLY_LOGLEVEL_INFO, "CBA settings initialized."] call infonly_main_fnc_log;

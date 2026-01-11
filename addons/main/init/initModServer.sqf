@@ -1,5 +1,3 @@
-#include "\z\infonly\addons\main\functions\functions.h"
-
 /*
 	Starts the server-side components of the mod. This function is called automatically
 	by fn_initMod.sqf when running on the server or in singleplayer.
@@ -10,19 +8,19 @@
 	- Handling turret locality changes (when players enter/exit vehicles)
 */
 
-[INFONLY_LOGLEVEL_INFO, "Initializing Infantry Only server components."] call INFONLY_fnc_log;
+[INFONLY_LOGLEVEL_INFO, "Initializing Infantry Only server components."] call infonly_main_fnc_log;
 
 // Execute vehicle weapon disabling initialization
-[INFONLY_LOGLEVEL_INFO, "Starting vehicle weapon disabling system."] call INFONLY_fnc_log;
+[INFONLY_LOGLEVEL_INFO, "Starting vehicle weapon disabling system."] call infonly_main_fnc_log;
 
 // Call the function immediately to disable weapons on existing vehicles
-call INFONLY_fnc_disableVehicleWeapons;
+call infonly_main_fnc_disableVehicleWeapons;
 
 // Schedule periodic checks for new vehicles (as backup to event handlers)
 [] spawn {
 	while {true} do {
 		sleep 30; // Check every 30 seconds for new vehicles
-		call INFONLY_fnc_disableVehicleWeapons;
+		call infonly_main_fnc_disableVehicleWeapons;
 	};
 };
 
@@ -61,9 +59,9 @@ call INFONLY_fnc_disableVehicleWeapons;
 			};
 			
 			// Handle turret locality for this vehicle
-			[_vehicle] call INFONLY_fnc_handleTurretLocality;
+			[_vehicle] call infonly_main_fnc_handleTurretLocality;
 		} forEach _allVehicles;
 	};
 };
 
-[INFONLY_LOGLEVEL_INFO, "Infantry Only server components initialized."] call INFONLY_fnc_log;
+[INFONLY_LOGLEVEL_INFO, "Infantry Only server components initialized."] call infonly_main_fnc_log;

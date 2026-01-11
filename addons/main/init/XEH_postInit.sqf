@@ -1,11 +1,11 @@
 #include "\z\infonly\addons\main\functions\functions.h"
 
-[INFONLY_LOGLEVEL_INFO, "XEH postInit started."] call INFONLY_fnc_log;
+[INFONLY_LOGLEVEL_INFO, "XEH postInit started."] call infonly_main_fnc_log;
 
 // Register CBA event handler for vehicle spawning (universal - runs on all machines)
-["vehicleSpawned", INFONLY_fnc_handleVehicleSpawned] call CBA_fnc_addEventHandler;
+["vehicleSpawned", infonly_main_fnc_handleVehicleSpawned] call CBA_fnc_addEventHandler;
 
-[INFONLY_LOGLEVEL_INFO, "Registered CBA event handler for vehicle spawning."] call INFONLY_fnc_log;
+[INFONLY_LOGLEVEL_INFO, "Registered CBA event handler for vehicle spawning."] call infonly_main_fnc_log;
 
 // Execute server-side initialization (runs on server and in singleplayer)
 // In singleplayer: !isMultiplayer is true
@@ -13,7 +13,7 @@
 if(isServer || !isMultiplayer) then {
 	#include "initModServer.sqf"
 } else {
-	[INFONLY_LOGLEVEL_INFO, "Client connected to multiplayer server. Vehicle weapon disabling handled by server."] call INFONLY_fnc_log;
+	[INFONLY_LOGLEVEL_INFO, "Client connected to multiplayer server. Vehicle weapon disabling handled by server."] call infonly_main_fnc_log;
 };
 
 // Execute client-side initialization (runs only on clients in multiplayer)
@@ -22,4 +22,4 @@ if(!isServer && hasInterface) then {
 	#include "initModClient.sqf"
 };
 
-[INFONLY_LOGLEVEL_INFO, "Infantry Only mod initialized."] call INFONLY_fnc_log;
+[INFONLY_LOGLEVEL_INFO, "Infantry Only mod initialized."] call infonly_main_fnc_log;

@@ -1,10 +1,3 @@
 #include "\z\infonly\addons\main\config\script_component.hpp"
 
-ADDON = false;
-
-// Define functions
 #include "XEH_PREP.hpp"
-
-#include "initCBASettings.sqf"
-
-ADDON = true;

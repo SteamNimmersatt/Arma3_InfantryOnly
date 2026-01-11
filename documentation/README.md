@@ -17,7 +17,7 @@ The mod is now fully integrated with CBA (Community Base Addons):
 
 1. **Event-driven Vehicle Detection**: Uses CBA event handlers to detect when new vehicles are spawned:
    ```sqf
-   ["vehicleSpawned", INFONLY_fnc_handleVehicleSpawned] call CBA_fnc_addEventHandler;
+   ["vehicleSpawned", infonly_main_fnc_handleVehicleSpawned] call CBA_fnc_addEventHandler;
    ```
 
 2. **CBA Settings**: Fully configurable options through CBA settings system:
