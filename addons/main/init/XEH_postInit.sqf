@@ -11,8 +11,7 @@
 // In singleplayer: !isMultiplayer is true
 // In multiplayer: isServer is true for dedicated server or player-hosted server
 if(isServer || !isMultiplayer) then {
-	// Call server initialization function
-	call INFONLY_fnc_initModServer;
+	#include "initModServer.sqf"
 } else {
 	[INFONLY_LOGLEVEL_INFO, "Client connected to multiplayer server. Vehicle weapon disabling handled by server."] call INFONLY_fnc_log;
 };
@@ -20,8 +19,7 @@ if(isServer || !isMultiplayer) then {
 // Execute client-side initialization (runs only on clients in multiplayer)
 // In multiplayer: isServer is false and hasInterface is true for clients with players
 if(!isServer && hasInterface) then {
-	// Call client initialization function
-	call INFONLY_fnc_initModClient;
+	#include "initModClient.sqf"
 };
 
 [INFONLY_LOGLEVEL_INFO, "Infantry Only mod initialized."] call INFONLY_fnc_log;
