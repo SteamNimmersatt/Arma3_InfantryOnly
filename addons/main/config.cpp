@@ -16,7 +16,3 @@ class CfgPatches
         VERSION_CONFIG;
 	};
 };
-
-class CfgFunctions {
-	#include "cfgfunctions.hpp"
-};
