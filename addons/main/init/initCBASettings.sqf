@@ -123,6 +123,72 @@
     true																			// '_isGlobal' flag. Set this to true to always have this setting synchronized between all clients in multiplayer
 ] call CBA_fnc_addSetting;
 
+// Allow UAVs/Drones
+[
+    "INFONLY_allowUAVs",															// Unique setting name.  Matches resulting variable name.
+    "CHECKBOX",																		// Type of setting.  Can be CHECKBOX, EDITBOX, LIST, SLIDER, COLOR, TIME.
+    ["Allow UAVs/Drones", "Allow unmanned aerial/ground vehicles to keep their ammunition. When unchecked, UAVs will have their ammunition removed like other vehicles."],	// Display name or display name + tooltip (optional, default: same as setting name).
+    [CBA_SETTINGS_CAT, SUB_CAT_VEHICLE],											// Category for the settings menu + optional sub-category.
+    false,																			// Default value for the setting.
+    true																			// '_isGlobal' flag. Set this to true to always have this setting synchronized between all clients in multiplayer
+] call CBA_fnc_addSetting;
+
+// UAV Base Classes
+[
+    "INFONLY_uavBaseClasses",														// Unique setting name.  Matches resulting variable name.
+    "EDITBOX",																		// Type of setting.  Can be CHECKBOX, EDITBOX, LIST, SLIDER, COLOR, TIME.
+    ["UAV Base Classes", "Comma-separated list of UAV/Drone base classnames that should be allowed to keep their ammunition (e.g. UAV_01_base_F,UGV_01_base_F)"],	// Display name or display name + tooltip (optional, default: same as setting name).
+    [CBA_SETTINGS_CAT, SUB_CAT_VEHICLE],											// Category for the settings menu + optional sub-category.
+    "UAV_01_base_F,UAV_02_base_F,UAV_03_base_F,UAV_04_base_F,UAV_05_base_F,UGV_01_base_F,UGV_02_base_F",																				// Default value for the setting.
+    true,																			// '_isGlobal' flag. Set this to true to always have this setting synchronized between all clients in multiplayer
+    {																				// Optional callback function that is executed when the setting is changed.
+		params ["_value"];
+		// Parse the base classes when it changes
+		if (_value isEqualType "") then {
+			INFONLY_uavBaseClassesParsed = _value splitString ",";
+			{
+				// Trim whitespace
+				INFONLY_uavBaseClassesParsed set [_forEachIndex, trim(_x)];
+			} forEach INFONLY_uavBaseClassesParsed;
+		} else {
+			INFONLY_uavBaseClassesParsed = [];
+		};
+	}
+] call CBA_fnc_addSetting;
+
+// Allow Naval Vessels
+[
+    "INFONLY_allowNaval",															// Unique setting name.  Matches resulting variable name.
+    "CHECKBOX",																		// Type of setting.  Can be CHECKBOX, EDITBOX, LIST, SLIDER, COLOR, TIME.
+    ["Allow Naval Vessels", "Allow naval vessels (boats, ships) to keep their ammunition. When unchecked, naval vessels will have their ammunition removed like other vehicles."],	// Display name or display name + tooltip (optional, default: same as setting name).
+    [CBA_SETTINGS_CAT, SUB_CAT_VEHICLE],											// Category for the settings menu + optional sub-category.
+    false,																			// Default value for the setting.
+    true																			// '_isGlobal' flag. Set this to true to always have this setting synchronized between all clients in multiplayer
+] call CBA_fnc_addSetting;
+
+// Naval Base Classes
+[
+    "INFONLY_navalBaseClasses",														// Unique setting name.  Matches resulting variable name.
+    "EDITBOX",																		// Type of setting.  Can be CHECKBOX, EDITBOX, LIST, SLIDER, COLOR, TIME.
+    ["Naval Base Classes", "Comma-separated list of naval vessel base classnames that should be allowed to keep their ammunition (e.g. Ship_F,Boat_F)"],	// Display name or display name + tooltip (optional, default: same as setting name).
+    [CBA_SETTINGS_CAT, SUB_CAT_VEHICLE],											// Category for the settings menu + optional sub-category.
+    "Ship_F,Boat_F,Boat_Armed_01_base_F",											// Default value for the setting.
+    true,																			// '_isGlobal' flag. Set this to true to always have this setting synchronized between all clients in multiplayer
+    {																				// Optional callback function that is executed when the setting is changed.
+		params ["_value"];
+		// Parse the base classes when it changes
+		if (_value isEqualType "") then {
+			INFONLY_navalBaseClassesParsed = _value splitString ",";
+			{
+				// Trim whitespace
+				INFONLY_navalBaseClassesParsed set [_forEachIndex, trim(_x)];
+			} forEach INFONLY_navalBaseClassesParsed;
+		} else {
+			INFONLY_navalBaseClassesParsed = [];
+		};
+	}
+] call CBA_fnc_addSetting;
+
 
 
 [INFONLY_LOGLEVEL_INFO, "CBA settings initialized."] call infonly_main_fnc_log;

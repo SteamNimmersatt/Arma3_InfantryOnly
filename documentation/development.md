@@ -3,17 +3,27 @@
 ## Overview
 This guide provides information for developers who want to contribute to or extend the Infantry Only mod. It covers the project structure, coding standards, and development workflow.
 
-## Project Structure
-```
-addons/
-  main/
-    config/                     # Configuration files (CBA definitions, Component config etc.)
-    init/                       # Initialization files (XEH, CBA settings etc.)
-    functions/                  # Mod functionality
-    cfgfunctions.hpp            # Function registration
-    config.cpp                  # Mod configuration
-    addon.toml                  # HEMTT build configuration
-```
+## Initial Development Setup
+
+  - Download hemtt and place it in the root directory of the git repository (or just run the `build.sh` script).
+  - Open the project in your preferred SQF editor (VS Code with SQF extension recommended)
+  - Subscribe to the development mods listed in file `hemtt/launch.toml`, section `workshop`.
+
+## Building the mod
+
+   - Run "hemtt dev" to create a dev build.
+   - Run "hemtt release" to create a signed release build.
+   - See the HEMTT documentation for more information.
+
+## Editing code while Arma3 is running
+
+   - In file `script_component.hpp` uncomment the `DISABLE_COMPILE_CACHE` definition. Do not commit this.
+
+   - Run the game via `hemtt launch`. HEMTT will create a symbolic link in the Arma3 game directory to the .hemttoutput dir in the project dir. It will build the mod and run the game as defined in `hemtt/launch.toml`.
+
+   - After a code change you need to restart the mission to see the change.
+
+   - You need to restart the game if you've added any files. You will also need to restart in some other special cases like new addon settings.
 
 ## Coding Standards
 
@@ -44,11 +54,6 @@ addons/
 
 ## Development Workflow
 
-### Setting Up Development Environment
-1. Clone or download the repository
-2. Open the project in your preferred SQF editor (VS Code with SQF extension recommended)
-3. Download HEMMT and place it into the project dir: https://github.com/BrettMayson/HEMTT/releases/latest/
-
 ### Making Changes
 1. Create a new branch for your changes
 2. Make your modifications following the coding standards
@@ -68,7 +73,7 @@ The mod now fully integrates with CBA (Community Base Addons) for enhanced funct
 
 ### CBA Settings
 - Settings are defined in `init/initCBASettings.sqf` using `CBA_fnc_addSetting`
-- Settings include mod enable/disable, vehicle whitelist, and logging verbosity
+- Settings include mod enable/disable, vehicle whitelist, logging verbosity, and advanced vehicle classification options.
 - Callback functions are used to process settings when they change
 
 ### CBA Event Handlers
@@ -82,22 +87,6 @@ The mod now fully integrates with CBA (Community Base Addons) for enhanced funct
 2. **Event Handlers**: Use CBA event handlers instead of polling when possible
 3. **Logging**: Use the CBA logging verbosity setting
 4. **Compatibility**: Always check if CBA is loaded before using CBA functions
-
-## Performance Considerations
-
-### Optimization Techniques
-1. **Event-Driven Processing**: Use CBA event handlers instead of periodic polling
-2. **Caching**: Cache results when possible to avoid redundant calculations
-3. **Selective Processing**: Skip objects that don't need processing
-4. **Batch Operations**: Process multiple objects together when possible
-5. **Efficient Loops**: Use appropriate loop constructs for the data size
-6. **Locality-Aware Processing**: Only process vehicles that are local to the current machine
-7. **Tiered Polling**: Use different polling frequencies for different tasks (frequent for critical operations, less frequent for backups)
-
-### Monitoring Performance
-1. **Profiling**: Use Arma 3 profiling tools to identify bottlenecks
-2. **Logging**: Add timing information to critical functions
-3. **Memory Management**: Avoid memory leaks by properly cleaning up variables
 
 ## Release Process
 

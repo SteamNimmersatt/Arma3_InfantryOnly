@@ -129,5 +129,55 @@ if (!isNil "INFONLY_allowPlanes" && {INFONLY_allowPlanes}) then {
 	};
 };
 
+// Check UAVs/Drones
+if (!isNil "INFONLY_allowUAVs" && {INFONLY_allowUAVs}) then {
+	// Use parsed UAV base classes from CBA settings, or default to hardcoded list if not available
+	private _uavBaseClasses = [];
+	if (!isNil "INFONLY_uavBaseClassesParsed" && {count INFONLY_uavBaseClassesParsed > 0}) then {
+		_uavBaseClasses = INFONLY_uavBaseClassesParsed;
+	} else {
+		// Fallback to hardcoded list
+		_uavBaseClasses = [
+			"UAV_01_base_F",
+			"UAV_02_base_F",
+			"UAV_03_base_F",
+			"UAV_04_base_F",
+			"UAV_05_base_F",
+			"UGV_01_base_F",
+			"UGV_02_base_F"
+		];
+	};
+	
+	// Check if vehicle is a UAV/Drone or inherits from one
+	{
+		if (_vehicle isKindOf _x) exitWith {
+			true
+		};
+	} forEach _uavBaseClasses;
+};
+
+// Check Naval vessels
+if (!isNil "INFONLY_allowNaval" && {INFONLY_allowNaval}) then {
+	// Use parsed naval base classes from CBA settings, or default to hardcoded list if not available
+	private _navalBaseClasses = [];
+	if (!isNil "INFONLY_navalBaseClassesParsed" && {count INFONLY_navalBaseClassesParsed > 0}) then {
+		_navalBaseClasses = INFONLY_navalBaseClassesParsed;
+	} else {
+		// Fallback to hardcoded list
+		_navalBaseClasses = [
+			"Ship_F",
+			"Boat_F",
+			"Boat_Armed_01_base_F"
+		];
+	};
+	
+	// Check if vehicle is a naval vessel or inherits from one
+	{
+		if (_vehicle isKindOf _x) exitWith {
+			true
+		};
+	} forEach _navalBaseClasses;
+};
+
 // If none of the above conditions matched, the vehicle type is not allowed
 false
