@@ -21,6 +21,16 @@ waitUntil {!isNil "INFONLY_INIT_STARTUP_SCRIPTS_EXECUTED" && !isNull player};
 
 [INFONLY_LOGLEVEL_INFO, "Registered CBA event handler for vehicle spawning on client."] call infonly_main_fnc_log;
 
+// Register event handler for player entering vehicles
+player addEventHandler ["GetInMan", {
+	params ["_player", "_role", "_vehicle", "_turret"];
+	
+	// Call our function to handle player entry notifications
+	[_player, _vehicle] call infonly_main_fnc_handlePlayerVehicleEntry;
+}];
+
+[INFONLY_LOGLEVEL_INFO, "Registered event handler for player entering vehicles."] call infonly_main_fnc_log;
+
 // Handle vehicles that are local to this client (important for multiplayer)
 // When a player gets in as gunner, turrets become local to their machine
 if(isMultiplayer) then {

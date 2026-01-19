@@ -71,6 +71,26 @@ private _processedCount = 0;
 	// This affects all turrets and weapons on the vehicle
 	_vehicle setVehicleAmmo 0;
 	
+	// Show notification to players in the vehicle if enabled
+	if (!isNil "INFONLY_showNotifications" && {INFONLY_showNotifications}) then {
+		// Find all players in the vehicle and notify them
+		{
+			if (isPlayer _x) then {
+				[_x, typeOf _vehicle] spawn {
+					params ["_player", "_vehicleType"];
+					// Format the vehicle name for better readability
+					private _displayName = getText (configFile >> "CfgVehicles" >> _vehicleType >> "displayName");
+					if (_displayName isEqualTo "") then {
+						_displayName = _vehicleType;
+					};
+					
+					// Show notification to player
+					[format ["<t color='#FF8800'>Infantry Only:</t> Weapons disabled on %1", _displayName], 0, 0.5, 5, 1, 0] spawn BIS_fnc_dynamicText;
+				};
+			};
+		} forEach crew _vehicle;
+	};
+	
 	// Mark vehicle as processed
 	_vehicle setVariable ["INFONLY_weaponsDisabled", true];
 	_processedCount = _processedCount + 1;

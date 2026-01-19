@@ -9,6 +9,7 @@
 #define CBA_SETTINGS_CAT "Infantry Only"
 #define SUB_CAT_GENERAL "General Settings"
 #define SUB_CAT_VEHICLE "Vehicle Settings"
+#define SUB_CAT_NOTIFICATIONS "Notifications"
 
 
 /////////////////////////////////////////////
@@ -187,6 +188,20 @@
 			INFONLY_navalBaseClassesParsed = [];
 		};
 	}
+] call CBA_fnc_addSetting;
+
+/////////////////////////////////////////////
+//             Notification Settings
+/////////////////////////////////////////////
+
+// Enable vehicle weapon disabled notifications
+[
+    "INFONLY_showNotifications",													// Unique setting name.  Matches resulting variable name.
+    "CHECKBOX",																		// Type of setting.  Can be CHECKBOX, EDITBOX, LIST, SLIDER, COLOR, TIME.
+    ["Show Notifications", "Show a notification when a player enters a vehicle that has had its weapons disabled."],	// Display name or display name + tooltip (optional, default: same as setting name).
+    [CBA_SETTINGS_CAT, SUB_CAT_NOTIFICATIONS],										// Category for the settings menu + optional sub-category.
+    true,																			// Default value for the setting.
+    true																			// '_isGlobal' flag. Set this to true to always have this setting synchronized between all clients in multiplayer
 ] call CBA_fnc_addSetting;
 
 
