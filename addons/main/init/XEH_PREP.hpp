@@ -4,4 +4,3 @@ PREP(log);
 PREP(msgSideChat);
 PREP(disableVehicleWeapons);
 PREP(isVehicleTypeAllowed);
-PREP(handlePlayerVehicleEntry);
