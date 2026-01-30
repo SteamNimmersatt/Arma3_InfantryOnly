@@ -23,13 +23,3 @@ if(!isServer && hasInterface) then {
 };
 
 [INFONLY_LOGLEVEL_INFO, "Infantry Only mod initialized."] call infonly_main_fnc_log;
-
-// Add event handler to detect projectile creation
-addMissionEventHandler ["EntityCreated", {
-    params ["_entity"];
-    if (_entity isKindOf "MissileBase" || _entity isKindOf "BombBase") then {
-        [_entity] call infonly_main_fnc_handleProjectileSpawn;
-    };
-}];
-
-[INFONLY_LOGLEVEL_INFO, "Registered mission event handler for projectile creation."] call infonly_main_fnc_log;
