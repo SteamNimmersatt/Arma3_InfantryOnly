@@ -191,4 +191,35 @@
 
 
 
+// Allow Scripted Projectiles
+[
+    "INFONLY_allowScriptedProjectiles",   // Unique setting name.  Matches resulting variable name.
+    "CHECKBOX",                             // Type of setting.  Can be CHECKBOX, EDITBOX, LIST, SLIDER, COLOR, TIME.
+    ["Allow Scripted Projectiles", "Allow scripted projectiles (e.g. from scripted airstrikes)."], // Display name or display name + tooltip (optional, default: same as setting name).
+    [CBA_SETTINGS_CAT, SUB_CAT_VEHICLE],    // Category for the settings menu + optional sub-category.
+    false,                                   // Default value for the setting.
+    true                                    // '_isGlobal' flag. Set this to true to always have this setting synchronized between all clients in multiplayer
+] call CBA_fnc_addSetting;
+
+// Scripted Projectile Blacklist
+[
+    "INFONLY_scriptedProjectileBlacklist",
+    "EDITBOX",
+    ["Scripted Projectile Classes", "Comma-separated list of projectile classnames to block when 'Allow Scripted Projectiles' is disabled (e.g. Bo_Mk82,BombCluster_03_Ammo_F)"],
+    [CBA_SETTINGS_CAT, SUB_CAT_VEHICLE],
+    "Bo_Mk82,BombCluster_03_Ammo_F,vn_bomb_500_blu1b_fb_ammo,ammo_Bomb_SDB,Bo_Mk82_MI08",
+    true,
+    {
+        params ["_value"];
+        if (_value isEqualType "") then {
+            INFONLY_scriptedProjectileBlacklistParsed = _value splitString ",";
+            {
+                INFONLY_scriptedProjectileBlacklistParsed set [_forEachIndex, trim(toUpper(_x))];
+            } forEach INFONLY_scriptedProjectileBlacklistParsed;
+        } else {
+            INFONLY_scriptedProjectileBlacklistParsed = [];
+        };
+    }
+] call CBA_fnc_addSetting;
+
 [INFONLY_LOGLEVEL_INFO, "CBA settings initialized."] call infonly_main_fnc_log;
