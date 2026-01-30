@@ -69,7 +69,7 @@
 [
     "INFONLY_allowStaticTurrets",													// Unique setting name.  Matches resulting variable name.
     "CHECKBOX",																		// Type of setting.  Can be CHECKBOX, EDITBOX, LIST, SLIDER, COLOR, TIME.
-    ["Allow Static Turrets", "Allow static turrets (machine guns, grenade launchers, etc.) to keep their ammunition. When unchecked, static turrets will have their ammunition removed like other vehicles."],	// Display name or display name + tooltip (optional, default: same as setting name).
+    ["Allow Static Turret Weapons", "Allow static turrets (machine guns, grenade launchers, etc.) to keep their ammunition. When unchecked, static turrets will have their ammunition removed like other vehicles."],	// Display name or display name + tooltip (optional, default: same as setting name).
     [CBA_SETTINGS_CAT, SUB_CAT_GROUND],											// Category for the settings menu + optional sub-category.
     true,																			// Default value for the setting.
     true																			// '_isGlobal' flag. Set this to true to always have this setting synchronized between all clients in multiplayer
@@ -79,7 +79,7 @@
 [
     "INFONLY_allowTechnicals",														// Unique setting name.  Matches resulting variable name.
     "CHECKBOX",																		// Type of setting.  Can be CHECKBOX, EDITBOX, LIST, SLIDER, COLOR, TIME.
-    ["Allow Technicals", "Allow technical vehicles (light wheeled armed vehicles like jeeps with machine guns) to keep their ammunition. When unchecked, technicals will have their ammunition removed like other vehicles."],	// Display name or display name + tooltip (optional, default: same as setting name).
+    ["Allow Technical Weapons", "Allow technical vehicles (light wheeled armed vehicles like jeeps with machine guns) to keep their ammunition. When unchecked, technicals will have their ammunition removed like other vehicles."],	// Display name or display name + tooltip (optional, default: same as setting name).
     [CBA_SETTINGS_CAT, SUB_CAT_GROUND],											// Category for the settings menu + optional sub-category.
     false,																			// Default value for the setting.
     true																			// '_isGlobal' flag. Set this to true to always have this setting synchronized between all clients in multiplayer
@@ -89,7 +89,7 @@
 [
     "INFONLY_allowAPCs",															// Unique setting name.  Matches resulting variable name.
     "CHECKBOX",																		// Type of setting.  Can be CHECKBOX, EDITBOX, LIST, SLIDER, COLOR, TIME.
-    ["Allow APCs / IFVs", "Allow armored personnel carriers and infantry fighting vehicles to keep their ammunition. When unchecked, APCs/IFVs will have their ammunition removed like other vehicles."],	// Display name or display name + tooltip (optional, default: same as setting name).
+    ["Allow APC / IFV Weapons", "Allow armored personnel carriers and infantry fighting vehicles to keep their ammunition. When unchecked, APCs/IFVs will have their ammunition removed like other vehicles."],	// Display name or display name + tooltip (optional, default: same as setting name).
     [CBA_SETTINGS_CAT, SUB_CAT_GROUND],											// Category for the settings menu + optional sub-category.
     false,																			// Default value for the setting.
     true																			// '_isGlobal' flag. Set this to true to always have this setting synchronized between all clients in multiplayer
@@ -99,7 +99,7 @@
 [
     "INFONLY_allowTanks",															// Unique setting name.  Matches resulting variable name.
     "CHECKBOX",																		// Type of setting.  Can be CHECKBOX, EDITBOX, LIST, SLIDER, COLOR, TIME.
-    ["Allow Tanks", "Allow main battle tanks and tank destroyers to keep their ammunition. When unchecked, tanks will have their ammunition removed like other vehicles."],	// Display name or display name + tooltip (optional, default: same as setting name).
+    ["Allow Tank Weapons", "Allow main battle tanks and tank destroyers to keep their ammunition. When unchecked, tanks will have their ammunition removed like other vehicles."],	// Display name or display name + tooltip (optional, default: same as setting name).
     [CBA_SETTINGS_CAT, SUB_CAT_GROUND],											// Category for the settings menu + optional sub-category.
     false,																			// Default value for the setting.
     true																			// '_isGlobal' flag. Set this to true to always have this setting synchronized between all clients in multiplayer
@@ -114,7 +114,7 @@
 [
     "INFONLY_allowHelis",															// Unique setting name.  Matches resulting variable name.
     "CHECKBOX",																		// Type of setting.  Can be CHECKBOX, EDITBOX, LIST, SLIDER, COLOR, TIME.
-    ["Allow Helicopters", "Allow helicopters to keep their ammunition. When unchecked, helicopters will have their ammunition removed like other vehicles."],	// Display name or display name + tooltip (optional, default: same as setting name).
+    ["Allow Helicopter Weapons", "Allow helicopters to keep their ammunition. When unchecked, helicopters will have their ammunition removed like other vehicles."],	// Display name or display name + tooltip (optional, default: same as setting name).
     [CBA_SETTINGS_CAT, SUB_CAT_AIR],											// Category for the settings menu + optional sub-category.
     false,																			// Default value for the setting.
     true																			// '_isGlobal' flag. Set this to true to always have this setting synchronized between all clients in multiplayer
@@ -124,7 +124,7 @@
 [
     "INFONLY_allowPlanes",															// Unique setting name.  Matches resulting variable name.
     "CHECKBOX",																		// Type of setting.  Can be CHECKBOX, EDITBOX, LIST, SLIDER, COLOR, TIME.
-    ["Allow Planes", "Allow fixed-wing aircraft to keep their ammunition. When unchecked, planes will have their ammunition removed like other vehicles."],	// Display name or display name + tooltip (optional, default: same as setting name).
+    ["Allow Plane Weapons", "Allow fixed-wing aircraft to keep their ammunition. When unchecked, planes will have their ammunition removed like other vehicles."],	// Display name or display name + tooltip (optional, default: same as setting name).
     [CBA_SETTINGS_CAT, SUB_CAT_AIR],											// Category for the settings menu + optional sub-category.
     false,																			// Default value for the setting.
     true																			// '_isGlobal' flag. Set this to true to always have this setting synchronized between all clients in multiplayer
@@ -134,7 +134,7 @@
 [
     "INFONLY_allowUAVs",															// Unique setting name.  Matches resulting variable name.
     "CHECKBOX",																		// Type of setting.  Can be CHECKBOX, EDITBOX, LIST, SLIDER, COLOR, TIME.
-    ["Allow UAVs/Drones", "Allow unmanned aerial/ground vehicles to keep their ammunition. When unchecked, UAVs will have their ammunition removed like other vehicles."],	// Display name or display name + tooltip (optional, default: same as setting name).
+    ["Allow UAV/Drone Weapons", "Allow unmanned aerial/ground vehicles to keep their ammunition. When unchecked, UAVs will have their ammunition removed like other vehicles."],	// Display name or display name + tooltip (optional, default: same as setting name).
     [CBA_SETTINGS_CAT, SUB_CAT_AIR],											// Category for the settings menu + optional sub-category.
     false,																			// Default value for the setting.
     true																			// '_isGlobal' flag. Set this to true to always have this setting synchronized between all clients in multiplayer
@@ -144,7 +144,7 @@
 [
     "INFONLY_uavBaseClasses",														// Unique setting name.  Matches resulting variable name.
     "EDITBOX",																		// Type of setting.  Can be CHECKBOX, EDITBOX, LIST, SLIDER, COLOR, TIME.
-    ["UAV Base Classes", "Comma-separated list of UAV/Drone base classnames that should be allowed to keep their ammunition (e.g. UAV_01_base_F,UGV_01_base_F)"],	// Display name or display name + tooltip (optional, default: same as setting name).
+    ["UAV/Drone Base Classes", "Base classes used to identify UAVs and drones. Vehicles inheriting from these classes will keep their ammunition when 'Allow UAVs/Drones' is enabled. Advanced: Only modify if adding custom drone mods."],	// Display name or display name + tooltip (optional, default: same as setting name).
     [CBA_SETTINGS_CAT, SUB_CAT_AIR],											// Category for the settings menu + optional sub-category.
     "UAV_01_base_F,UAV_02_base_F,UAV_03_base_F,UAV_04_base_F,UAV_05_base_F,UGV_01_base_F,UGV_02_base_F",																				// Default value for the setting.
     true,																			// '_isGlobal' flag. Set this to true to always have this setting synchronized between all clients in multiplayer
@@ -182,7 +182,7 @@
 [
     "INFONLY_navalBaseClasses",														// Unique setting name.  Matches resulting variable name.
     "EDITBOX",																		// Type of setting.  Can be CHECKBOX, EDITBOX, LIST, SLIDER, COLOR, TIME.
-    ["Naval Base Classes", "Comma-separated list of naval vessel base classnames that should be allowed to keep their ammunition (e.g. Ship_F,Boat_F)"],	// Display name or display name + tooltip (optional, default: same as setting name).
+    ["Naval Vessel Base Classes", "Base classes used to identify boats and ships. Vehicles inheriting from these classes will keep their ammunition when 'Allow Naval Vessels' is enabled. Advanced: Only modify if adding custom naval mods."],	// Display name or display name + tooltip (optional, default: same as setting name).
     [CBA_SETTINGS_CAT, SUB_CAT_NAVAL],											// Category for the settings menu + optional sub-category.
     "Ship_F,Boat_F,Boat_Armed_01_base_F",											// Default value for the setting.
     true,																			// '_isGlobal' flag. Set this to true to always have this setting synchronized between all clients in multiplayer
